@@ -1,17 +1,32 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.macys.platform</groupId>
+	<groupId>com.iot</groupId>
 	<artifactId>event.service.parent</artifactId>
 	<version>1.0.0</version>
+	<name>IOT Services Project</name>
+	<description>Project to demonstrate on IOT Services Project</description>
+	<url>https://github.com/javapoc2017/ioteventservice</url>
+
+	<issueManagement>
+		<url>https://github.com/javapoc2017/ioteventservice/issues</url>
+		<system>GitHub Issues</system>
+	</issueManagement>
+
+
+	<scm>
+		<url>https://github.com/javapoc2017/ioteventservice</url>
+		<connection>https://github.com/javapoc2017/ioteventservice.git</connection>
+		<developerConnection>https://github.com/javapoc2017/ioteventservice.git</developerConnection>
+	</scm>
+
 	<packaging>pom</packaging>
-	<name>IOTEventServices  :: ${project.artifactId}</name>
 
 	<modules>
 		<module>event.cassandra.common.util</module>
 		<module>event.subscriber</module>
-		<!-- <module>event.rest.service</module> -->
+		<module>event.rest.service</module>
 	</modules>
 
 	<properties>
@@ -26,6 +41,7 @@
 		<cassandra.version>2.2.0</cassandra.version>
 		<datastax.cassandra.driver.version>3.1.2</datastax.cassandra.driver.version>
 		<testng.version>6.8.13</testng.version>
+		<junit.version>4.11</junit.version>
 		<slf4j.version>1.7.7</slf4j.version>
 	</properties>
 
@@ -89,8 +105,11 @@
 			<version>${testng.version}</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
-
-
-
 </project>
