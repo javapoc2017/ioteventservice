@@ -23,7 +23,7 @@ public class TestEventConsumer {
 	@Test
 	public void testCase() {
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(500000);
 		} catch (InterruptedException ex) {
 			ex.printStackTrace();
 		}

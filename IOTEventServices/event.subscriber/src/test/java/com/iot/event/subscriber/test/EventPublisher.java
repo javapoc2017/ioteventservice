@@ -6,51 +6,17 @@ import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
-import org.eclipse.paho.client.mqttv3.MqttPersistenceException;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Service;
 
-
-@EnableScheduling
-@Service
 public class EventPublisher {
 
-    /** The logger instance */
-    private static final Logger LOGGER = LoggerFactory.getLogger(EventPublisher.class);
+    public static void publishMessages() throws MqttException {
 
-    @Autowired
-    MqttClient mqttClient;
-
-    @Scheduled(fixedDelay = 2000)
-    public void sendMessages() {
-
-        try {
-            final String topic = "topic/trvajjala"; // This is MQTT Topic
-            final String content = "Temparature at my home is 32 degree celsius on this time ==>" + new Date();
-            final int qos = 2;
-            final MqttMessage message = new MqttMessage(content.getBytes());
-            message.setQos(qos);
-            mqttClient.publish(topic, message);
-            LOGGER.info("Publishing message to the broker on topic ");
-        } catch (final MqttPersistenceException e) {
-            LOGGER.error("Error while persisting the message ", e);
-        } catch (final MqttException e) {
-            LOGGER.error("Error while connecting the broker ", e);
-        }
-    }
-
-    public static void test() throws MqttException {
-
-        final String topic = "topic/trvajjala";
+        final String topic = "iotevents";
         String content = "Temparature at my home is 32 degree celsius";
         final int qos = 2;
         final String broker = "tcp://127.0.0.1:1883";
-        final String clientId = "air-condition";
+        final String clientId = "publisherClientId";
         final MemoryPersistence persistence = new MemoryPersistence();
 
         try {
@@ -77,5 +43,9 @@ public class EventPublisher {
             System.out.println("excep " + me);
             me.printStackTrace();
         }
+    }
+    
+    public static void main(String ar[]) throws Exception{
+    	publishMessages();
     }
 }
