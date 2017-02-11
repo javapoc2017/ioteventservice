@@ -37,11 +37,11 @@ public class EventSubscriber implements MqttCallback, InitializingBean {
 	//@Autowired
 	//private Session session;
 
-	@Override
+	@Override	
 	public void afterPropertiesSet() throws Exception {
 		mqttClient = mqttConfig.createMqttClient();
 		mqttClient.setCallback(this);
-		mqttClient.subscribe("iotevents");
+		mqttClient.subscribe(iotEventsTopicName);
 	}
 
 	@Override
