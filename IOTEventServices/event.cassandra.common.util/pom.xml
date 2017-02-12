@@ -10,7 +10,7 @@
 	</parent>
 
 	<groupId>com.iot</groupId>
-	<artifactId>event.cassandra.common.utils</artifactId>
+	<artifactId>event.data.service</artifactId>
 	<name>${project.artifactId}</name>
 
 	<dependencies>
