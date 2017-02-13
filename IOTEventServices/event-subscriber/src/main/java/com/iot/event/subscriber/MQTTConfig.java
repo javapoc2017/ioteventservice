@@ -25,9 +25,11 @@ public class MQTTConfig {
 	@Value("${iot.mqtt.broker.host}")
 	private String brokerHost;
 
-	@Value("${iot.mqtt.client.id}")
-	private String clientId;
+	@Value("${iot.mqtt.broker.user.name}")
+	private String username;
 
+	@Value("${iot.mqtt.broker.password}")
+	private String password;
 	
     @Bean
     public MqttClient createMqttClient() throws MqttException, UnknownHostException, SocketException {
@@ -35,6 +37,8 @@ public class MQTTConfig {
         final MqttClient sampleClient = new MqttClient(brokerHost, getMacAddress(), persistence);
         final MqttConnectOptions connOpts = new MqttConnectOptions();
         connOpts.setCleanSession(true);
+        connOpts.setUserName(username);
+        connOpts.setPassword(password.toCharArray());
         sampleClient.connect(connOpts);
         return sampleClient;
     }
@@ -58,10 +62,5 @@ public class MQTTConfig {
 	public String getBrokerHost() {
 		return brokerHost;
 	}
-
-	public String getClientId() {
-		return clientId;
-	}
-
     
 }

@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.iot</groupId>
-	<artifactId>event.service.parent</artifactId>
+	<artifactId>event-service-parent</artifactId>
 	<version>1.0.0</version>
 	<name>IOT Services Project</name>
 	<description>Project to demonstrate on IOT Services Project</description>
@@ -24,9 +24,9 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>event.data.service</module>
-		<module>event.subscriber</module>
-		<module>event.rest.service</module>
+		<module>event-data-service</module>
+		<module>event-subscriber</module>
+		<module>event-rest-service</module>
 	</modules>
 
 	<properties>

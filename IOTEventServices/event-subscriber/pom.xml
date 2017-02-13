@@ -6,19 +6,19 @@
 
 	<parent>
 		<groupId>com.iot</groupId>
-		<artifactId>event.service.parent</artifactId>
+		<artifactId>event-service-parent</artifactId>
 		<version>1.0.0</version>
 	</parent>
 
 	<groupId>com.iot</groupId>
-	<artifactId>event.subscriber</artifactId>
+	<artifactId>event-subscriber</artifactId>
 	<name>${project.artifactId}</name>
 
 
 	<dependencies>
 		<dependency>
 			<groupId>com.iot</groupId>
-			<artifactId>event.cassandra.common.utils</artifactId>
+			<artifactId>event-data-service</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
