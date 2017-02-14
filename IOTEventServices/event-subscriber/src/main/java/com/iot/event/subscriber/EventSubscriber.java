@@ -1,9 +1,13 @@
 package com.iot.event.subscriber;
 
+import java.util.Random;
+
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
@@ -32,7 +36,7 @@ public class EventSubscriber implements MqttCallback, InitializingBean {
 
 	@Value("${iot.device.publish.topic}")
 	private String iotDeviceEventsTopic;
-	
+
 	@Autowired
 	private MQTTConfig mqttConfig;
 
@@ -41,7 +45,7 @@ public class EventSubscriber implements MqttCallback, InitializingBean {
 	@Autowired
 	private Session session;
 
-	@Override	
+	@Override
 	public void afterPropertiesSet() throws Exception {
 		mqttClient = mqttConfig.createMqttClient();
 		mqttClient.setCallback(this);
@@ -49,12 +53,14 @@ public class EventSubscriber implements MqttCallback, InitializingBean {
 	}
 
 	@Override
-	public void messageArrived(String topic, MqttMessage message) throws Exception {
-		//devid,event_time --> from message headers
+	public void messageArrived(String topic, MqttMessage message) {
 		logger.info("Topic name {}, payload {}", topic, new String(message.getPayload()));
-		//TODO: will call it in separate thread
-		processMessage(message);
-		
+		try {
+			processMessage(message);
+		} catch (Exception ex) {
+			logger.error("Exception while processing the message ",ex);
+		}
+
 	}
 
 	@Override
@@ -64,19 +70,25 @@ public class EventSubscriber implements MqttCallback, InitializingBean {
 
 	@Override
 	public void deliveryComplete(IMqttDeliveryToken token) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Bean
 	public static PropertySourcesPlaceholderConfigurer propertyConfigurer() {
 		return new PropertySourcesPlaceholderConfigurer();
 	}
-	
-	private void processMessage(MqttMessage message){
-		String devId ="";
-		String eventTime="";
+
+	private void processMessage(MqttMessage message) throws Exception {
+		Object obj = JSONValue.parse(new String(message.getPayload()));
+		JSONObject jsonObject = (JSONObject) obj;
+		String devid = (String) jsonObject.get("devid");  
+		String devloginid = (String) jsonObject.get("devloginid"); 
+		String devtype = (String) jsonObject.get("devtype");
+		String eventTime = (String) jsonObject.get("event_time");
+		JSONObject attributesJson = (JSONObject) jsonObject.get("attributes");
+		//need to work on tthis
+		//Map<String,String> attributes =  attributesJson.values();
 		PreparedStatement prepared = session.prepare(insertEventQuery);
-		session.execute(prepared.bind(devId,eventTime,new String(message.getPayload())));
+		//need to work on this
+		session.execute(prepared.bind(new Random(100).nextInt(),devid, devloginid,devtype,eventTime,attributesJson.toJSONString()));
 	}
 }

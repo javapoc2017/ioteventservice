@@ -36,20 +36,20 @@ map<devid, dev_macid>,
 PRIMARY KEY (username)
 );
 
-CREATE TABLE device_events(
+
+CREATE TABLE iot_events(
 eventid int,
 devid text,
-userid int,
+devloginid text,
+devtype text,
 event_time timestamp,
-payload text,	
-PRIMARY KEY(eventid)
+attributes map<text, text>,
+PRIMARY KEY (eventid)
 );
 
+//DESCRIBE keyspaces;
+//use iotevents_v1
+//describe tables; 
+//describe columnfamily
+//insert into iot_events JSON '{"eventid": 1,"devid": "1234","devloginid": "8766","devtype": "sensor","event_time": "2017-02-14 15:04:30","attributes": //{"temp": "23", "humi": "12","x-axis": "12", "y-axis": "321","z-axis": "98"}}';
 
-//if devise send message, userid is null
-//INSERT INTO device_events(devid,userid,event_time,payload) VALUES ('ABC011022017',null'13-02-2017 08:01:00','<payload>');
-
-//if user send message to device,userid is login userid
-//INSERT INTO device_events(devid,userid,event_time,payload) VALUES ('ABC011022017',1'13-02-2017 08:11:00','<payload>');
-
-//need to think on device and device user mapping

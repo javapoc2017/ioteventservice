@@ -12,23 +12,24 @@ public class EventPublisher {
 
     public static void publishMessages() throws MqttException {
 
-        final String topic = "iotevents";
-        String content = "Temparature at my home is 32 degree celsius";
-        final int qos = 2;
-        final String broker = "tcp://127.0.0.1:1883";
-        final String clientId = "publisherClientId";
-        final MemoryPersistence persistence = new MemoryPersistence();
+        String topic = "iot/device/publishevents";
+        int qos = 2;
+        String broker = "tcp://m11.cloudmqtt.com:17832";//"tcp://127.0.0.1:1883";
+        String userName="pulvnqwm";
+        String password="X5dGnZ_Vq4BO";		
+        String clientId = "publisherClientId";
+        MemoryPersistence persistence = new MemoryPersistence();
 
         try {
-            final MqttClient sampleClient = new MqttClient(broker, clientId, persistence);
-            final MqttConnectOptions connOpts = new MqttConnectOptions();
+            MqttClient sampleClient = new MqttClient(broker, clientId, persistence);
+            MqttConnectOptions connOpts = new MqttConnectOptions();
             connOpts.setCleanSession(true);
+            connOpts.setUserName(userName);
+            connOpts.setPassword(password.toCharArray());
             System.out.println("Connecting to broker: " + broker);
             sampleClient.connect(connOpts);
             System.out.println("Connected");
-            System.out.println("Publishing message: " + content);
-            content += new Date();
-            final MqttMessage message = new MqttMessage(content.getBytes());
+            MqttMessage message = new MqttMessage(prepareSwitchEventMessage().getBytes());
             message.setQos(qos);
             sampleClient.publish(topic, message);
             System.out.println("Message published");
@@ -43,6 +44,14 @@ public class EventPublisher {
             System.out.println("excep " + me);
             me.printStackTrace();
         }
+    }
+    
+    private static String prepareSwitchEventMessage(){
+    	return null;
+    }
+   
+    private static String prepareSensorEventMessage(){
+    	return null;
     }
     
     public static void main(String ar[]) throws Exception{

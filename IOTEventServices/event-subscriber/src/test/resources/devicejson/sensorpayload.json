@@ -1,0 +1,11 @@
+{
+"devid": "1234",
+"devloginid": "abc",
+"devtype": "switch",
+"timestamp": "2017-02-14 15:04:30",
+"attributes": {"temp": "23",
+           "humi": "12",
+           "x-axis": "123",
+           "y-axis": "321",
+           "z-axis": "98"}
+}
