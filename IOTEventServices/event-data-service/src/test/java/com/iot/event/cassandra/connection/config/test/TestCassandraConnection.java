@@ -6,6 +6,8 @@ import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.iot.event.cassandra.connection.config.CassandraAppConfig;
+import com.semisol.data.config.CassandraConfiguration;
+import com.semisol.data.dao.api.OrganizationDAO;
 
 public class TestCassandraConnection {
 	public static AnnotationConfigApplicationContext context;
@@ -13,7 +15,7 @@ public class TestCassandraConnection {
 	@BeforeClass
 	public static void init() {
 		try {
-			context = new AnnotationConfigApplicationContext(CassandraAppConfig.class);
+			context = new AnnotationConfigApplicationContext("com.semisol.data");
 		} catch (Throwable ex) {
 			ex.printStackTrace();
 		}
@@ -22,7 +24,11 @@ public class TestCassandraConnection {
 	@Test
 	public void testCase() {
 		try {
-			Thread.sleep(5000);
+			System.out.println("caling OrganizationDAO");
+			OrganizationDAO organizationDAO= context.getBean(OrganizationDAO.class);
+			System.out.println("caling OrganizationDAO...");
+			organizationDAO.saveOrganizationData();
+			Thread.sleep(500000);
 		} catch (InterruptedException ex) {
 			ex.printStackTrace();
 		}
