@@ -5,8 +5,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.iot.event.cassandra.connection.config.CassandraAppConfig;
-import com.semisol.data.config.CassandraConfiguration;
 import com.semisol.data.dao.api.OrganizationDAO;
 
 public class TestCassandraConnection {

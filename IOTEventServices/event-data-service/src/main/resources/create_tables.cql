@@ -43,7 +43,7 @@ devloginid text,
 devtype text,
 event_time timestamp,
 attributes map<text, text>,
-PRIMARY KEY (event_time)
+PRIMARY KEY (devid,event_time)
 );
 
 //DESCRIBE keyspaces;

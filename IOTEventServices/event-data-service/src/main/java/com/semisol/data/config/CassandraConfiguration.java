@@ -16,7 +16,7 @@ import org.springframework.data.cassandra.repository.config.EnableCassandraRepos
 
 @Configuration
 @PropertySources({ 
-	@PropertySource(value = { "classpath:cassandra.common.utils.properties" }),
+	@PropertySource(value = { "classpath:cassandra-data-service.properties" }),
 	@PropertySource(value = {"file:${event.configuration.home}/environment.properties"}, ignoreResourceNotFound = true) }
 )
 @EnableCassandraRepositories(basePackages = { "com.semisol.data" })

@@ -1,15 +1,9 @@
 package com.iot.event.subscriber;
 
-import java.sql.Timestamp;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
@@ -22,19 +16,15 @@ import org.springframework.context.annotation.PropertySources;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.stereotype.Service;
 
-import com.datastax.driver.core.PreparedStatement;
-import com.datastax.driver.core.Session;
+import com.semisol.data.dao.api.IotEventsDAO;
 
 @Service
 @PropertySources({ @PropertySource(value = { "classpath:event.subscriber.properties" }), @PropertySource(value = {
 		"file:${event.configuration.home}/environment.properties" }, ignoreResourceNotFound = true) })
-@Import({ com.iot.event.cassandra.connection.config.CassandraAppConfig.class })
+@Import({ com.semisol.data.config.EventDataServiceAppConfig.class })
 public class EventSubscriber implements MqttCallback, InitializingBean {
 
 	private static Logger logger = LoggerFactory.getLogger(EventSubscriber.class);
-
-	@Value("${iot.device.event.insert.query}")
-	private String insertEventQuery;
 
 	@Value("${iot.device.publish.topic}")
 	private String iotDeviceEventsTopic;
@@ -43,9 +33,9 @@ public class EventSubscriber implements MqttCallback, InitializingBean {
 	private MQTTConfig mqttConfig;
 
 	private MqttClient mqttClient;
-
+	
 	@Autowired
-	private Session session;
+	private IotEventsDAO iotEventsDAO;
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
@@ -58,7 +48,7 @@ public class EventSubscriber implements MqttCallback, InitializingBean {
 	public void messageArrived(String topic, MqttMessage message) {
 		logger.info("Topic name {}, payload {}", topic, new String(message.getPayload()));
 		try {
-			processMessage(message);
+			iotEventsDAO.saveEventsInfo(new String(message.getPayload()));
 		} catch (Exception ex) {
 			logger.error("Exception while processing the message ",ex);
 		}
@@ -77,23 +67,5 @@ public class EventSubscriber implements MqttCallback, InitializingBean {
 	@Bean
 	public static PropertySourcesPlaceholderConfigurer propertyConfigurer() {
 		return new PropertySourcesPlaceholderConfigurer();
-	}
-
-	private void processMessage(MqttMessage message) throws Exception {
-		Object obj = JSONValue.parse(new String(message.getPayload()));
-		JSONObject jsonObject = (JSONObject) obj;
-		String devid = (String) jsonObject.get("devid");  
-		String devloginid = (String) jsonObject.get("devloginid"); 
-		String devtype = (String) jsonObject.get("devtype");
-		Timestamp eventTime = Timestamp.valueOf((String) jsonObject.get("event_time"));
-		JSONObject attributesJson = (JSONObject) jsonObject.get("attributes");
-		Map<String,String> attributes = new HashMap<>();
-		for (Object key : attributesJson.keySet()) {
-	        String keyStr = (String)key;
-	        String valStr =(String)attributesJson.get(keyStr);
-	        attributes.put(keyStr,valStr);
-	    }
-		PreparedStatement pstatement = session.prepare(insertEventQuery);
-		session.execute(pstatement.bind(devid,devloginid,devtype,eventTime,attributes));
 	}
 }
