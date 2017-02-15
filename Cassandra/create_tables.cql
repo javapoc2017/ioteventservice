@@ -38,18 +38,17 @@ PRIMARY KEY (username)
 
 
 CREATE TABLE iot_events(
-eventid int,
 devid text,
 devloginid text,
 devtype text,
 event_time timestamp,
 attributes map<text, text>,
-PRIMARY KEY (eventid)
+PRIMARY KEY (event_time)
 );
 
 //DESCRIBE keyspaces;
 //use iotevents_v1
 //describe tables; 
 //describe columnfamily
-//insert into iot_events JSON '{"eventid": 1,"devid": "1234","devloginid": "8766","devtype": "sensor","event_time": "2017-02-14 15:04:30","attributes": //{"temp": "23", "humi": "12","x-axis": "12", "y-axis": "321","z-axis": "98"}}';
+//insert into iot_events JSON '{"devid": "1234","devloginid": "8766","devtype": "sensor","event_time": "2017-02-14 15:04:30","attributes": {"temp": "23", "humi": "12","x-axis": "12", "y-axis": "321","z-axis": "98"}}';
 

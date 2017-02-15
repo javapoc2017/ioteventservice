@@ -1,6 +1,8 @@
 package com.iot.event.subscriber;
 
-import java.util.Random;
+import java.sql.Timestamp;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
@@ -83,12 +85,15 @@ public class EventSubscriber implements MqttCallback, InitializingBean {
 		String devid = (String) jsonObject.get("devid");  
 		String devloginid = (String) jsonObject.get("devloginid"); 
 		String devtype = (String) jsonObject.get("devtype");
-		String eventTime = (String) jsonObject.get("event_time");
+		Timestamp eventTime = Timestamp.valueOf((String) jsonObject.get("event_time"));
 		JSONObject attributesJson = (JSONObject) jsonObject.get("attributes");
-		//need to work on tthis
-		//Map<String,String> attributes =  attributesJson.values();
-		PreparedStatement prepared = session.prepare(insertEventQuery);
-		//need to work on this
-		session.execute(prepared.bind(new Random(100).nextInt(),devid, devloginid,devtype,eventTime,attributesJson.toJSONString()));
+		Map<String,String> attributes = new HashMap<>();
+		for (Object key : attributesJson.keySet()) {
+	        String keyStr = (String)key;
+	        String valStr =(String)attributesJson.get(keyStr);
+	        attributes.put(keyStr,valStr);
+	    }
+		PreparedStatement pstatement = session.prepare(insertEventQuery);
+		session.execute(pstatement.bind(devid,devloginid,devtype,eventTime,attributes));
 	}
 }
