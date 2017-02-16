@@ -38,12 +38,12 @@ PRIMARY KEY (username)
 
 
 CREATE TABLE iot_events(
-devid text,
-devloginid text,
-devtype text,
-event_time timestamp,
+devId text,
+loginId text,
+type text,
+eventTime timestamp,
 attributes map<text, text>,
-PRIMARY KEY (devid,event_time)
+PRIMARY KEY (devId,eventTime)
 );
 
 //DESCRIBE keyspaces;

@@ -17,6 +17,9 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.stereotype.Service;
 
 import com.semisol.data.dao.api.IotEventsDAO;
+import com.semisol.data.domain.IotEvents;
+
+import com.iot.event.subscriber.util.MessageConverter;
 
 @Service
 @PropertySources({ @PropertySource(value = { "classpath:event.subscriber.properties" }), @PropertySource(value = {
@@ -33,7 +36,7 @@ public class EventSubscriber implements MqttCallback, InitializingBean {
 	private MQTTConfig mqttConfig;
 
 	private MqttClient mqttClient;
-	
+
 	@Autowired
 	private IotEventsDAO iotEventsDAO;
 
@@ -48,9 +51,10 @@ public class EventSubscriber implements MqttCallback, InitializingBean {
 	public void messageArrived(String topic, MqttMessage message) {
 		logger.info("Topic name {}, payload {}", topic, new String(message.getPayload()));
 		try {
-			iotEventsDAO.saveEventsInfo(new String(message.getPayload()));
+			IotEvents iotEvents = MessageConverter.convertJsonToMapperObject(new String(message.getPayload()));
+			iotEventsDAO.saveEventsInfo(iotEvents);
 		} catch (Exception ex) {
-			logger.error("Exception while processing the message ",ex);
+			logger.error("Exception while processing the message ", ex);
 		}
 
 	}
@@ -67,5 +71,5 @@ public class EventSubscriber implements MqttCallback, InitializingBean {
 	@Bean
 	public static PropertySourcesPlaceholderConfigurer propertyConfigurer() {
 		return new PropertySourcesPlaceholderConfigurer();
-	}
+	}	
 }

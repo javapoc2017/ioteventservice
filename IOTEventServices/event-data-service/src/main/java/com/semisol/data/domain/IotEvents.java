@@ -4,78 +4,69 @@ import java.sql.Timestamp;
 import java.util.Map;
 
 import org.springframework.cassandra.core.PrimaryKeyType;
+import org.springframework.data.cassandra.mapping.Column;
 import org.springframework.data.cassandra.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.mapping.Table;
 
-@Table
+@Table("iot_events")
 public class IotEvents {
-	private String devid;
-	private String devloginid;
-	private String devtype;
-	//Need to change different field for primarykey may be we can have iotEventID
-	@PrimaryKeyColumn(name = "event_time", type = PrimaryKeyType.PARTITIONED)
-	private Timestamp event_time;
-	private Map<String,String> attributes;
-	/**
-	 * @return the devid
-	 */
-	public String getDevid() {
-		return devid;
+	@PrimaryKeyColumn(name = "devId", ordinal = 0, type = PrimaryKeyType.CLUSTERED)
+	private String devId;
+	@Column(value = "loginId")
+	private String loginId;
+	@Column(value = "type")
+	private String type;
+	@PrimaryKeyColumn(name = "eventTime", ordinal = 3, type = PrimaryKeyType.PARTITIONED)
+	private Timestamp eventTime;
+	@Column(value = "attributes")
+	private Map<String, String> attributes;
+
+	public String getDevId() {
+		return devId;
 	}
-	/**
-	 * @param devid the devid to set
-	 */
-	public void setDevid(String devid) {
-		this.devid = devid;
+
+	public void setDevId(String devId) {
+		this.devId = devId;
 	}
-	/**
-	 * @return the devloginid
-	 */
-	public String getDevloginid() {
-		return devloginid;
+
+	public String getLoginId() {
+		return loginId;
 	}
-	/**
-	 * @param devloginid the devloginid to set
-	 */
-	public void setDevloginid(String devloginid) {
-		this.devloginid = devloginid;
+
+	public void setLoginId(String loginId) {
+		this.loginId = loginId;
 	}
-	/**
-	 * @return the devtype
-	 */
-	public String getDevtype() {
-		return devtype;
+
+	public String getType() {
+		return type;
 	}
-	/**
-	 * @param devtype the devtype to set
-	 */
-	public void setDevtype(String devtype) {
-		this.devtype = devtype;
+
+	public void setType(String type) {
+		this.type = type;
 	}
-	/**
-	 * @return the event_time
-	 */
-	public Timestamp getEvent_time() {
-		return event_time;
+
+	public Timestamp getEventTime() {
+		return eventTime;
 	}
-	/**
-	 * @param event_time the event_time to set
-	 */
-	public void setEvent_time(Timestamp event_time) {
-		this.event_time = event_time;
+
+	public void setEventTime(Timestamp eventTime) {
+		this.eventTime = eventTime;
 	}
-	/**
-	 * @return the attributes
-	 */
+
 	public Map<String, String> getAttributes() {
 		return attributes;
 	}
-	/**
-	 * @param attributes the attributes to set
-	 */
+
 	public void setAttributes(Map<String, String> attributes) {
 		this.attributes = attributes;
 	}
+
+	@Override
+	public String toString() {
+		return "Device [devId=" + devId + ", loginId=" + loginId + ", type=" + type + ", eventTime=" + eventTime
+				+ ", attributes=" + attributes + "]";
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -84,10 +75,10 @@ public class IotEvents {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((attributes == null) ? 0 : attributes.hashCode());
-		result = prime * result + ((devid == null) ? 0 : devid.hashCode());
-		result = prime * result + ((devloginid == null) ? 0 : devloginid.hashCode());
-		result = prime * result + ((devtype == null) ? 0 : devtype.hashCode());
-		result = prime * result + ((event_time == null) ? 0 : event_time.hashCode());
+		result = prime * result + ((devId == null) ? 0 : devId.hashCode());
+		result = prime * result + ((loginId == null) ? 0 : loginId.hashCode());
+		result = prime * result + ((type== null) ? 0 : type.hashCode());
+		result = prime * result + ((eventTime == null) ? 0 : eventTime.hashCode());
 		return result;
 	}
 	/* (non-Javadoc)
@@ -107,25 +98,25 @@ public class IotEvents {
 				return false;
 		} else if (!attributes.equals(other.attributes))
 			return false;
-		if (devid == null) {
-			if (other.devid != null)
+		if (devId == null) {
+			if (other.devId != null)
 				return false;
-		} else if (!devid.equals(other.devid))
+		} else if (!devId.equals(other.devId))
 			return false;
-		if (devloginid == null) {
-			if (other.devloginid != null)
+		if (loginId == null) {
+			if (other.loginId != null)
 				return false;
-		} else if (!devloginid.equals(other.devloginid))
+		} else if (!loginId.equals(other.loginId))
 			return false;
-		if (devtype == null) {
-			if (other.devtype != null)
+		if (type == null) {
+			if (other.type != null)
 				return false;
-		} else if (!devtype.equals(other.devtype))
+		} else if (!type.equals(other.type))
 			return false;
-		if (event_time == null) {
-			if (other.event_time != null)
+		if (eventTime == null) {
+			if (other.eventTime != null)
 				return false;
-		} else if (!event_time.equals(other.event_time))
+		} else if (!eventTime.equals(other.eventTime))
 			return false;
 		return true;
 	}

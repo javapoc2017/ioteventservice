@@ -2,7 +2,6 @@ package com.semisol.data.dao.impl;
 
 import java.sql.Timestamp;
 import java.util.Calendar;
-import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

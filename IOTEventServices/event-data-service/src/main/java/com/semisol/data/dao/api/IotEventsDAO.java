@@ -2,11 +2,13 @@ package com.semisol.data.dao.api;
 
 import org.springframework.context.annotation.Configuration;
 
+import com.semisol.data.domain.IotEvents;
+
 @Configuration
 public interface IotEventsDAO {
-	
-	void saveEventsInfo(String message)  throws Exception;
-	
-	String getEventDataByDevice(String devId) throws ClassNotFoundException; 
+
+	void saveEventsInfo(IotEvents iotEvents) throws Exception;
+
+	IotEvents findLatestEventByDevice(String deviceId) throws Exception;
 
 }
