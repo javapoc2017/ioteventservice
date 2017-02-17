@@ -1,8 +1,8 @@
 {
-"devid": "1234",
-"devloginid": "abc",
-"devtype": "switch",
-"event_time": "2017-02-14 15:04:30",
+"devId": "1234",
+"loginId": "abc",
+"type": "switch",
+"eventTime": "2017-02-18 10:20:56",
 "attributes": {"temp": "23",
            "humi": "12",
            "x-axis": "123",

@@ -53,6 +53,7 @@ public class EventSubscriber implements MqttCallback, InitializingBean {
 		try {
 			IotEvents iotEvents = MessageConverter.convertJsonToMapperObject(new String(message.getPayload()));
 			iotEventsDAO.saveEventsInfo(iotEvents);
+			//logger.info(""+iotEventsDAO.findLatestEventByDevice("12334"));
 		} catch (Exception ex) {
 			logger.error("Exception while processing the message ", ex);
 		}

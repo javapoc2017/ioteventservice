@@ -8,7 +8,6 @@ import com.semisol.data.domain.IotEvents;
 
 @Repository
 public interface IotEventsRepository extends CassandraRepository<IotEvents> {
-	// Comment this method while testing, otherwise will get error
-	/*@Query("select * from iot_events where devId= ?0 order by eventTime desc limit 1")
-	IotEvents findLatestEventByDevice(String devId);*/
+	@Query("select * from iot_events where devId= ?0 order by eventTime desc limit 1")
+	IotEvents findLatestEventByDevice(String devId);
 }

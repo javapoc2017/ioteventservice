@@ -22,6 +22,6 @@ public class IotEventsDAOImpl implements IotEventsDAO {
 
 	@Override
 	public IotEvents findLatestEventByDevice(String deviceId) throws Exception {
-		return null;//  iotEventsRepository.findLatestEventByDevice(deviceId);
+		return iotEventsRepository.findLatestEventByDevice(deviceId);
 	}
 }

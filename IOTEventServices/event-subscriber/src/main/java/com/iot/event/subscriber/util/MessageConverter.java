@@ -1,6 +1,9 @@
 package com.iot.event.subscriber.util;
 
+import java.text.DateFormat;
+
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
 import com.semisol.data.domain.IotEvents;
@@ -11,7 +14,7 @@ public class MessageConverter {
 	
 	private static Gson getGsonObject(){
 		if(gson == null){
-			gson = new Gson();
+			gson = new GsonBuilder().setDateFormat("yyyy-MM-dd hh:mm:ss").create();
 		}
 		return gson;
 	}

@@ -1,6 +1,7 @@
 package com.semisol.data.domain;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Map;
 
 import org.springframework.cassandra.core.PrimaryKeyType;
@@ -17,7 +18,7 @@ public class IotEvents {
 	@Column(value = "type")
 	private String type;
 	@PrimaryKeyColumn(name = "eventTime", ordinal = 3, type = PrimaryKeyType.PARTITIONED)
-	private Timestamp eventTime;
+	private Date eventTime;
 	@Column(value = "attributes")
 	private Map<String, String> attributes;
 
@@ -45,11 +46,11 @@ public class IotEvents {
 		this.type = type;
 	}
 
-	public Timestamp getEventTime() {
+	public Date getEventTime() {
 		return eventTime;
 	}
 
-	public void setEventTime(Timestamp eventTime) {
+	public void setEventTime(Date eventTime) {
 		this.eventTime = eventTime;
 	}
 
