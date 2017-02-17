@@ -32,10 +32,9 @@ public class IotEventMonitorApplication extends SpringBootServletInitializer imp
 	@Override
 	public void onApplicationEvent(ApplicationEnvironmentPreparedEvent event) {
 		ConfigurableEnvironment env = event.getEnvironment();
-		// registerExternalPropertySource(env,
-		// "classpath:cassandra-data-service.properties");
-		// registerExternalPropertySource(env,
-		// "classpath:event.subscriber.properties");
+		 registerExternalPropertySource(env,"classpath:cassandra-data-service.properties");
+		 registerExternalPropertySource(env,"classpath:event.subscriber.properties");
+		 registerExternalPropertySource(env,"file:///d:/IOT/environment.properties");
 	}
 
 	@Override
