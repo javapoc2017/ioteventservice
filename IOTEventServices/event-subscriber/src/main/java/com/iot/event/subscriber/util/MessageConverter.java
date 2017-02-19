@@ -1,6 +1,5 @@
 package com.iot.event.subscriber.util;
 
-import java.text.DateFormat;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

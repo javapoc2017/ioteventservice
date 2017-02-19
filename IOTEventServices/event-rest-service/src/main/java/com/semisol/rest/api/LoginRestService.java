@@ -1,22 +1,36 @@
 package com.semisol.rest.api;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.semisol.iot.dto.LoginDTO;
+import com.semisol.iot.dto.LoginResponse;
 import com.semisol.service.api.LoginService;
 
 @RestController
+@RequestMapping(value = "/v1/iot")
 public class LoginRestService {
+	private static Logger logger = LoggerFactory.getLogger(LoginRestService.class);
 	
 	@Autowired
 	private LoginService loginService;
 	
-	@RequestMapping(value="/addUser",method=RequestMethod.POST)
-	public void saveUser(@RequestParam String username ,@RequestParam String password) {
-		 loginService.validateUser(username, password);;
+	@RequestMapping(value="/customer/registerUser",method=RequestMethod.POST)
+	public LoginResponse registration(@RequestBody LoginDTO loginDTO) {
+		logger.info("LoginRestService:saveUser"+loginDTO);
+		LoginResponse loginResponse = loginService.registerUser(loginDTO);
+	    return loginResponse;
+	}
+	@RequestMapping(value="/customer/validate",method=RequestMethod.POST)
+	public LoginResponse validateLogin(@RequestBody LoginDTO loginDTO) {
+		logger.info("LoginRestService:validateLogin");
+		LoginResponse loginResponse = loginService.validateUser(loginDTO);
+		return loginResponse;
 	}
 
 }

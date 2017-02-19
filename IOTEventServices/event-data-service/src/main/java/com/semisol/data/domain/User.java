@@ -20,7 +20,7 @@ public class User {
 	private String password;
 	private Timestamp updated_time;
 	private Integer orgid;
-	private Map<String,String> Stringdevice;
+	private Map<String,String> device;
 	/**
 	 * @return the userid
 	 */
@@ -132,14 +132,14 @@ public class User {
 	/**
 	 * @return the stringdevice
 	 */
-	public Map<String, String> getStringdevice() {
-		return Stringdevice;
+	public Map<String, String> getDevice() {
+		return device;
 	}
 	/**
 	 * @param stringdevice the stringdevice to set
 	 */
-	public void setStringdevice(Map<String, String> stringdevice) {
-		Stringdevice = stringdevice;
+	public void setDevice(Map<String, String> device) {
+		device = device;
 	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
@@ -148,7 +148,7 @@ public class User {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((Stringdevice == null) ? 0 : Stringdevice.hashCode());
+		result = prime * result + ((device == null) ? 0 : device.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((first_name == null) ? 0 : first_name.hashCode());
 		result = prime * result + ((last_name == null) ? 0 : last_name.hashCode());
@@ -172,10 +172,10 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		if (Stringdevice == null) {
-			if (other.Stringdevice != null)
+		if (device == null) {
+			if (other.device != null)
 				return false;
-		} else if (!Stringdevice.equals(other.Stringdevice))
+		} else if (!device.equals(other.device))
 			return false;
 		if (email == null) {
 			if (other.email != null)

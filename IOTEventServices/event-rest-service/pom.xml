@@ -20,6 +20,11 @@
 			<artifactId>event-data-service</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.iot</groupId>
+			<artifactId>event-subscriber</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 	</dependencies>
 	
 </project>

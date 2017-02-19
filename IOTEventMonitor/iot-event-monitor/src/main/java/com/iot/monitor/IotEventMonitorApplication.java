@@ -16,7 +16,7 @@ import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.io.support.ResourcePropertySource;
 
 @SpringBootApplication
-@ComponentScan(basePackages = "com.semisol.data,com.iot.event.subscriber")
+@ComponentScan(basePackages = "com.semisol.data,com.iot.event.subscriber,com.semisol.rest,com.semisol.service")
 public class IotEventMonitorApplication extends SpringBootServletInitializer implements
 		EmbeddedServletContainerCustomizer, ApplicationListener<ApplicationEnvironmentPreparedEvent>, Ordered {
 
@@ -34,7 +34,7 @@ public class IotEventMonitorApplication extends SpringBootServletInitializer imp
 		ConfigurableEnvironment env = event.getEnvironment();
 		 registerExternalPropertySource(env,"classpath:cassandra-data-service.properties");
 		 registerExternalPropertySource(env,"classpath:event.subscriber.properties");
-		 registerExternalPropertySource(env,"file:///d:/IOT/environment.properties");
+		 //registerExternalPropertySource(env,"file:///d:/IOT/environment.properties");
 	}
 
 	@Override

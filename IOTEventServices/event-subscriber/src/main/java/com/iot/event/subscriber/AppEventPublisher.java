@@ -37,4 +37,5 @@ public class AppEventPublisher {
 			logger.error("Exception while publishing the message ", ex);
 		}
 	}
+	
 }
