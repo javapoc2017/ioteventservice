@@ -25,7 +25,7 @@ public class TestCassandraConnection {
 			System.out.println("caling OrganizationDAO");
 			OrganizationDAO organizationDAO= context.getBean(OrganizationDAO.class);
 			System.out.println("caling OrganizationDAO...");
-			organizationDAO.saveOrganizationData();
+			//organizationDAO.saveOrganizationData();
 			Thread.sleep(500000);
 		} catch (InterruptedException ex) {
 			ex.printStackTrace();

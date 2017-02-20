@@ -10,5 +10,8 @@ import com.semisol.data.domain.User;
 public interface UserRepository extends CassandraRepository<User>{
 	@Query("select * from user where username= ?0 and password= ?1")
 	User verifyUserCredentials(String username,String password);
+	
+	@Query("select count(1) from user where username= ?0")
+	Integer verifyUserID(String username);
 
 }

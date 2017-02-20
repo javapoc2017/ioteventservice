@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 
 import com.semisol.data.dao.api.UserDAO;
 import com.semisol.iot.dto.LoginDTO;
-import com.semisol.iot.dto.LoginResponse;
-import com.semisol.iot.util.LoginConverterUtll;
+import com.semisol.iot.dto.RestResponse;
+import com.semisol.iot.util.ConverterUtll;
 import com.semisol.service.api.LoginService;
 
 @Service
@@ -14,21 +14,23 @@ public class LoginServiceImpl implements LoginService {
 
 	@Autowired
 	private UserDAO userDAO;
+	
+	
 
 	@Override
-	public LoginResponse validateUser(LoginDTO loginDTO) {
-		LoginResponse loginResponse = new LoginResponse();
-		boolean status = userDAO.validateUser(LoginConverterUtll.convertDtoToDao(loginDTO));
-		loginResponse.setStatus(status);
-		return loginResponse;
+	public RestResponse validateUser(LoginDTO loginDTO) {
+		RestResponse restResponse = new RestResponse();
+		boolean status = userDAO.validateUser(ConverterUtll.convertDtoToDao(loginDTO));
+		restResponse.setStatus(status);
+		return restResponse;
 	}
 
 	@Override
-	public LoginResponse registerUser(LoginDTO loginDTO) {
-		LoginResponse loginResponse = new LoginResponse();
-		boolean status = userDAO.saveUserInfo(LoginConverterUtll.convertDtoToDao(loginDTO));
-		loginResponse.setStatus(status);
-		return loginResponse;
+	public RestResponse registerUser(LoginDTO loginDTO) {
+		RestResponse restResponse = new RestResponse();
+		boolean status = userDAO.saveUserInfo(ConverterUtll.convertDtoToDao(loginDTO));
+		restResponse.setStatus(status);
+		return restResponse;
 	}
 
 }

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.semisol.iot.dto.LoginDTO;
-import com.semisol.iot.dto.LoginResponse;
+import com.semisol.iot.dto.RestResponse;
 import com.semisol.service.api.LoginService;
 
 @RestController
@@ -21,18 +21,18 @@ public class LoginRestService {
 	private LoginService loginService;
 	
 	@RequestMapping(value="/customer/registerUser",method=RequestMethod.POST)
-	public LoginResponse registration(@RequestBody LoginDTO loginDTO) {
+	public RestResponse registration(@RequestBody LoginDTO loginDTO) {
 		logger.info("LoginRestService:saveUser,request"+loginDTO);
-		LoginResponse loginResponse = loginService.registerUser(loginDTO);
-		logger.info("LoginRestService:saveUser,response"+loginResponse);
-	    return loginResponse;
+		RestResponse restResponse = loginService.registerUser(loginDTO);
+		logger.info("LoginRestService:saveUser,response"+restResponse);
+	    return restResponse;
 	}
 	@RequestMapping(value="/customer/validate",method=RequestMethod.POST)
-	public LoginResponse validateLogin(@RequestBody LoginDTO loginDTO) {
+	public RestResponse validateLogin(@RequestBody LoginDTO loginDTO) {
 		logger.info("LoginRestService:validateLogin,request"+loginDTO);
-		LoginResponse loginResponse = loginService.validateUser(loginDTO);
-		logger.info("LoginRestService:validateLogin,response"+loginResponse);
-		return loginResponse;
+		RestResponse restResponse = loginService.validateUser(loginDTO);
+		logger.info("LoginRestService:validateLogin,response"+restResponse);
+		return restResponse;
 	}
 
 }

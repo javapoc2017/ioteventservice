@@ -1,13 +1,13 @@
 package com.semisol.service.api;
 
 import com.semisol.iot.dto.LoginDTO;
-import com.semisol.iot.dto.LoginResponse;
+import com.semisol.iot.dto.RestResponse;
 
 public interface LoginService {
 	
-	LoginResponse validateUser(LoginDTO loginDTO);
+	RestResponse validateUser(LoginDTO loginDTO);
 	
-	LoginResponse registerUser(LoginDTO loginDTO);
+	RestResponse registerUser(LoginDTO loginDTO);
 	
 
 }

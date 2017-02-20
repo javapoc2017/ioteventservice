@@ -1,16 +1,34 @@
 package com.semisol.iot.dto;
 
-public class LoginResponse {
+import java.util.List;
+
+public class RestResponse {
 	
 	private String sessionId;
 	
 	private boolean status;
+	
+	private List<Errors> error;
 
 	/**
 	 * @return the sessionId
 	 */
 	public String getSessionId() {
 		return sessionId;
+	}
+
+	/**
+	 * @return the error
+	 */
+	public List<Errors> getError() {
+		return error;
+	}
+
+	/**
+	 * @param error the error to set
+	 */
+	public void setError(List<Errors> error) {
+		this.error = error;
 	}
 
 	/**
