@@ -22,14 +22,16 @@ public class LoginRestService {
 	
 	@RequestMapping(value="/customer/registerUser",method=RequestMethod.POST)
 	public LoginResponse registration(@RequestBody LoginDTO loginDTO) {
-		logger.info("LoginRestService:saveUser"+loginDTO);
+		logger.info("LoginRestService:saveUser,request"+loginDTO);
 		LoginResponse loginResponse = loginService.registerUser(loginDTO);
+		logger.info("LoginRestService:saveUser,response"+loginResponse);
 	    return loginResponse;
 	}
 	@RequestMapping(value="/customer/validate",method=RequestMethod.POST)
 	public LoginResponse validateLogin(@RequestBody LoginDTO loginDTO) {
-		logger.info("LoginRestService:validateLogin");
+		logger.info("LoginRestService:validateLogin,request"+loginDTO);
 		LoginResponse loginResponse = loginService.validateUser(loginDTO);
+		logger.info("LoginRestService:validateLogin,response"+loginResponse);
 		return loginResponse;
 	}
 

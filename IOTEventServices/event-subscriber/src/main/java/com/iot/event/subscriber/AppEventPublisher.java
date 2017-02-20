@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.iot.event.subscriber.util.MessageConverter;
 import com.semisol.data.dao.api.IotEventsDAO;
+import com.semisol.data.domain.IotEvents;
 
 @Service
 public class AppEventPublisher {
@@ -33,6 +34,17 @@ public class AppEventPublisher {
 			MqttMessage message = new MqttMessage(eventMessage.getBytes());
 			mqttClient.publish(iotAppEventsTopic, message);
 			iotEventsDAO.saveEventsInfo(MessageConverter.convertJsonToMapperObject(eventMessage));
+		} catch (Exception ex) {
+			logger.error("Exception while publishing the message ", ex);
+		}
+	}
+	
+	public void publishAppEvent(IotEvents iotEvents){
+		try {
+			mqttClient = mqttConfig.createMqttClient();
+			MqttMessage message = new MqttMessage(MessageConverter.convertObjectToJson(iotEvents).getBytes());
+			mqttClient.publish(iotAppEventsTopic, message);
+			iotEventsDAO.saveEventsInfo(iotEvents);
 		} catch (Exception ex) {
 			logger.error("Exception while publishing the message ", ex);
 		}

@@ -44,7 +44,7 @@ loginId text,
 type text,
 eventTime timestamp,
 attributes map<text, text>,
-PRIMARY KEY (UUID)
+PRIMARY KEY (eventId)
 );
 
 //DESCRIBE keyspaces;

@@ -1,5 +1,7 @@
 package com.semisol.service.impl;
 
+import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +26,8 @@ public class SwitchServiceImpl implements SwitchService {
 	public boolean updateSwitch(IotEventsDTO iotEventsDTO) {
 		
 		 try {
-			 // appEventPublisher.publishAppEvent(eventMessage);
-			  iotEventsDAO.saveEventsInfo(convertDTOtoDAO(iotEventsDTO));
+			  appEventPublisher.publishAppEvent(convertDTOtoDAO(iotEventsDTO));
+			  //iotEventsDAO.saveEventsInfo(convertDTOtoDAO(iotEventsDTO));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -35,9 +37,12 @@ public class SwitchServiceImpl implements SwitchService {
 	private IotEvents convertDTOtoDAO(IotEventsDTO iotEventsDTO){
 		IotEvents iotEvents =new IotEvents();
 		iotEvents.setAttributes(iotEventsDTO.getAttributes());
-		iotEvents.setDevId(UUID.randomUUID());
+		iotEvents.setDevId(iotEventsDTO.getDevId());
+		iotEvents.setEventId(UUID.randomUUID());
 		iotEvents.setLoginId(iotEventsDTO.getLoginId());
 		iotEvents.setType(iotEventsDTO.getType());
+		Calendar cal=Calendar.getInstance();
+		iotEvents.setEventTime(new Timestamp(cal.getTimeInMillis()));
 		return iotEvents;
 	}
 
