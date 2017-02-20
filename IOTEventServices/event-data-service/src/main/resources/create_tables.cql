@@ -5,7 +5,7 @@ CREATE KEYSPACE iotevents_v1 WITH REPLICATION = { 'class' : 'SimpleStrategy', 'r
 use iotevents_v1;
 
 CREATE TABLE organization(
-orgid int, 
+orgid UUID, 
 orgname text,
 description text,
 updated_time timestamp,
@@ -13,7 +13,7 @@ PRIMARY KEY (orgname)
 );
 
 CREATE TABLE device(
-devid text,
+devid UUID,
 dev_macid text,
 devname text,
 attributes map<text,text>,
@@ -23,7 +23,7 @@ PRIMARY KEY (devid)
 
 
 CREATE TABLE user(
-userid int,
+userid UUID,
 username text,
 first_name text,
 last_name text,
@@ -38,12 +38,13 @@ PRIMARY KEY (username)
 
 
 CREATE TABLE iot_events(
+eventId UUID,
 devId text,
 loginId text,
 type text,
 eventTime timestamp,
 attributes map<text, text>,
-PRIMARY KEY (devId,eventTime)
+PRIMARY KEY (UUID)
 );
 
 //DESCRIBE keyspaces;

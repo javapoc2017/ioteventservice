@@ -1,5 +1,7 @@
 package com.semisol.service.impl;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +35,7 @@ public class SwitchServiceImpl implements SwitchService {
 	private IotEvents convertDTOtoDAO(IotEventsDTO iotEventsDTO){
 		IotEvents iotEvents =new IotEvents();
 		iotEvents.setAttributes(iotEventsDTO.getAttributes());
-		iotEvents.setDevId(iotEventsDTO.getDevId());
+		iotEvents.setDevId(UUID.randomUUID());
 		iotEvents.setLoginId(iotEventsDTO.getLoginId());
 		iotEvents.setType(iotEventsDTO.getType());
 		return iotEvents;

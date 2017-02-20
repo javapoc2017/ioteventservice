@@ -2,6 +2,7 @@ package com.semisol.data.domain;
 
 import java.sql.Timestamp;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.cassandra.core.PrimaryKeyType;
 import org.springframework.data.cassandra.mapping.PrimaryKeyColumn;
@@ -11,7 +12,7 @@ import org.springframework.data.cassandra.mapping.Table;
 public class Device {
 	
 	@PrimaryKeyColumn(name = "devid", type = PrimaryKeyType.PARTITIONED)
-	private String devid;
+	private UUID devid;
 	private String dev_macid;
 	private String devname;
 	private Map<String,String> attributes;
@@ -19,13 +20,13 @@ public class Device {
 	/**
 	 * @return the devid
 	 */
-	public String getDevid() {
+	public UUID getDevid() {
 		return devid;
 	}
 	/**
 	 * @param devid the devid to set
 	 */
-	public void setDevid(String devid) {
+	public void setDevid(UUID devid) {
 		this.devid = devid;
 	}
 	/**

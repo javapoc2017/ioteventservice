@@ -3,6 +3,7 @@ package com.semisol.data.dao.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
+import com.datastax.driver.core.utils.UUIDs;
 import com.semisol.data.dao.api.UserDAO;
 import com.semisol.data.domain.User;
 import com.semisol.data.repository.UserRepository;

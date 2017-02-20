@@ -1,6 +1,7 @@
 package com.semisol.data.domain;
 
 import java.sql.Timestamp;
+import java.util.UUID;
 
 import org.springframework.cassandra.core.PrimaryKeyType;
 import org.springframework.data.cassandra.mapping.PrimaryKeyColumn;
@@ -11,7 +12,7 @@ import org.springframework.data.cassandra.mapping.Table;
 public class Organization {
 	
 	
-	private Integer orgid;
+	private UUID orgid;
 	
 	@PrimaryKeyColumn(name = "orgname", type = PrimaryKeyType.PARTITIONED)
 	private String orgname;
@@ -23,14 +24,14 @@ public class Organization {
 	/**
 	 * @return the orgid
 	 */
-	public Integer getOrgid() {
+	public UUID getOrgid() {
 		return orgid;
 	}
 
 	/**
 	 * @param orgid the orgid to set
 	 */
-	public void setOrgid(Integer orgid) {
+	public void setOrgid(UUID orgid) {
 		this.orgid = orgid;
 	}
 

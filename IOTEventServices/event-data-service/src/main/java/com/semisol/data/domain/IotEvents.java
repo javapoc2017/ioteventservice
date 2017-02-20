@@ -1,8 +1,8 @@
 package com.semisol.data.domain;
 
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.cassandra.core.PrimaryKeyType;
 import org.springframework.data.cassandra.mapping.Column;
@@ -12,7 +12,7 @@ import org.springframework.data.cassandra.mapping.Table;
 @Table("iot_events")
 public class IotEvents {
 	@PrimaryKeyColumn(name = "devId", ordinal = 0, type = PrimaryKeyType.CLUSTERED)
-	private String devId;
+	private UUID devId;
 	@Column(value = "loginId")
 	private String loginId;
 	@Column(value = "type")
@@ -22,11 +22,11 @@ public class IotEvents {
 	@Column(value = "attributes")
 	private Map<String, String> attributes;
 
-	public String getDevId() {
+	public UUID getDevId() {
 		return devId;
 	}
 
-	public void setDevId(String devId) {
+	public void setDevId(UUID devId) {
 		this.devId = devId;
 	}
 

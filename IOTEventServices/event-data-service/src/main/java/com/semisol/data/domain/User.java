@@ -2,16 +2,18 @@ package com.semisol.data.domain;
 
 import java.sql.Timestamp;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.cassandra.core.PrimaryKeyType;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.cassandra.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.mapping.Table;
 
 @Table
 public class User {
-	
+	@Id
 	@PrimaryKeyColumn(name = "userid", type = PrimaryKeyType.PARTITIONED)
-	private Integer userid ;
+	private UUID userid ;
 	private String username ;
 	private String first_name;
 	private String last_name;
@@ -24,13 +26,13 @@ public class User {
 	/**
 	 * @return the userid
 	 */
-	public Integer getUserid() {
+	public UUID getUserid() {
 		return userid;
 	}
 	/**
 	 * @param userid the userid to set
 	 */
-	public void setUserid(Integer userid) {
+	public void setUserid(UUID userid) {
 		this.userid = userid;
 	}
 	/**

@@ -16,7 +16,7 @@ public class SwitchRestService {
 	@Autowired
 	private SwitchService switchService;
 	
-	@RequestMapping(value="/switch",method=RequestMethod.POST)
+	@RequestMapping(value="/switch/operation",method=RequestMethod.POST)
 	public void registerUser(@RequestBody IotEventsDTO iotEventsDTO) {
 		switchService.updateSwitch(iotEventsDTO);
 	}

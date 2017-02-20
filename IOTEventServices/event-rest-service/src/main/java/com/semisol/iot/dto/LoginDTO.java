@@ -14,6 +14,19 @@ public class LoginDTO {
 	private Timestamp updated_time;
 	private Integer orgid;
 	private Map<String,String> device;
+	
+	/**
+	 * @return the device
+	 */
+	public Map<String, String> getDevice() {
+		return device;
+	}
+	/**
+	 * @param device the device to set
+	 */
+	public void setDevice(Map<String, String> device) {
+		this.device = device;
+	}
 	/**
 	 * @return the username
 	 */
@@ -110,17 +123,6 @@ public class LoginDTO {
 	public void setOrgid(Integer orgid) {
 		this.orgid = orgid;
 	}
-	/**
-	 * @return the stringdevice
-	 */
-	public Map<String, String> getDevice() {
-		return device;
-	}
-	/**
-	 * @param stringdevice the stringdevice to set
-	 */
-	public void setDevice(Map<String, String> device) {
-		this.device = device;
-	}
+	
 	
 }

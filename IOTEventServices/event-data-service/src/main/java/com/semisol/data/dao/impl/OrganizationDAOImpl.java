@@ -2,6 +2,7 @@ package com.semisol.data.dao.impl;
 
 import java.sql.Timestamp;
 import java.util.Calendar;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +20,7 @@ public class OrganizationDAOImpl implements OrganizationDAO{
 	public void saveOrganizationData() {
 		System.out.println("saving the data.. repo");
 		Organization organization = new Organization();
-		organization.setOrgid(2);
+		organization.setOrgid(UUID.randomUUID());
 		organization.setDescription("Home");
 		organization.setOrgname("Nisum2");
 		Calendar cal=Calendar.getInstance();
