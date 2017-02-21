@@ -10,21 +10,14 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.PropertySources;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.stereotype.Service;
 
+import com.iot.event.subscriber.util.MessageConverter;
 import com.semisol.data.dao.api.IotEventsDAO;
 import com.semisol.data.domain.IotEvents;
 
-import com.iot.event.subscriber.util.MessageConverter;
-
 @Service
-@PropertySources({ @PropertySource(value = { "classpath:event.subscriber.properties" }), @PropertySource(value = {
-		"file:${event.configuration.home}/environment.properties" }, ignoreResourceNotFound = true) })
-@Import({ com.semisol.data.config.EventDataServiceAppConfig.class })
 public class EventSubscriber implements MqttCallback, InitializingBean {
 
 	private static Logger logger = LoggerFactory.getLogger(EventSubscriber.class);

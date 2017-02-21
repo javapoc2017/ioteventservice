@@ -12,14 +12,9 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.PropertySources;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 @Configuration
-@PropertySources({ @PropertySource(value = { "classpath:event.subscriber.properties" }), 
-    @PropertySource(value = {"file:${event.configuration.home}/environment.properties" }, 
-    ignoreResourceNotFound = true) })
 public class MQTTConfig {
 
 	@Value("${iot.mqtt.broker.host}")

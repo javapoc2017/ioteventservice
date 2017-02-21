@@ -1,6 +1,10 @@
 package com.iot.event.subscriber.util;
 
 
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.UUID;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParseException;
@@ -19,7 +23,13 @@ public class MessageConverter {
 	}
 	
 	public static IotEvents convertJsonToMapperObject(String jsonrString) throws JsonParseException{
-		return getGsonObject().fromJson(jsonrString, new TypeToken<IotEvents>(){}.getType());
+		IotEvents iotEvents = getGsonObject().fromJson(jsonrString, new TypeToken<IotEvents>(){}.getType());
+		iotEvents.setEventId(UUID.randomUUID());
+		if(iotEvents.getEventTime() == null){
+			Calendar cal=Calendar.getInstance();
+			iotEvents.setEventTime(new Timestamp(cal.getTimeInMillis()));
+		}
+		return iotEvents;
 	}
 	
 	public static String convertObjectToJson(Object deviceObj){
