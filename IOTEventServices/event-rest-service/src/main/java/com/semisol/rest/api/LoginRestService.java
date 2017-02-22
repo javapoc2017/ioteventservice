@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.semisol.iot.dto.LoginDTO;
@@ -27,12 +28,21 @@ public class LoginRestService {
 		logger.info("LoginRestService:saveUser,response"+restResponse);
 	    return restResponse;
 	}
-	@RequestMapping(value="/customer/validate",method=RequestMethod.POST)
+	@RequestMapping(value="/customer/login",method=RequestMethod.POST)
 	public RestResponse validateLogin(@RequestBody LoginDTO loginDTO) {
 		logger.info("LoginRestService:validateLogin,request"+loginDTO);
 		RestResponse restResponse = loginService.validateUser(loginDTO);
 		logger.info("LoginRestService:validateLogin,response"+restResponse);
 		return restResponse;
 	}
+	
+	/*@RequestMapping(value="/customer/logout",method=RequestMethod.GET)
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public RestResponse logout(HttpSession session) {
+		logger.info("LoginRestService:validateLogin,request"+loginDTO);
+		RestResponse restResponse = loginService.validateUser(loginDTO);
+		logger.info("LoginRestService:validateLogin,response"+restResponse);
+		return restResponse;
+	}*/
 
 }

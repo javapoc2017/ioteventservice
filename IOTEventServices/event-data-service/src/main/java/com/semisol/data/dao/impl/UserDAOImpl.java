@@ -1,9 +1,10 @@
 package com.semisol.data.dao.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
-import com.datastax.driver.core.utils.UUIDs;
 import com.semisol.data.dao.api.UserDAO;
 import com.semisol.data.domain.User;
 import com.semisol.data.repository.UserRepository;
@@ -11,6 +12,7 @@ import com.semisol.data.util.PasswordUtil;
 
 @Configuration
 public class UserDAOImpl implements UserDAO{
+	private static Logger logger = LoggerFactory.getLogger(UserDAOImpl.class);
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -32,9 +34,14 @@ public class UserDAOImpl implements UserDAO{
 	@Override
 	public boolean validateUser(User user) {
 		try{
-			  userRepository.verifyUserCredentials(user.getUsername(),PasswordUtil.getEncryptedPassword(user.getPassword()));
+			logger.info("UserDAOImpl:validateUser"+user);
+			 User userData= userRepository.verifyUserCredentials(user.getUsername());
+			 if(userData.getPassword().equals(PasswordUtil.getEncryptedPassword(user.getPassword()))){
+				 return true;
+			 }
 			  
 			}catch(Exception ex){
+				logger.info("UserDAOImpl:validateUser,exception"+ex.getMessage());
 				return false;
 			}
 		return false;

@@ -11,6 +11,15 @@ import org.springframework.data.cassandra.mapping.Table;
 
 @Table
 public class User {
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "User [userid=" + userid + ", username=" + username + ", first_name=" + first_name + ", last_name="
+				+ last_name + ", email=" + email + ", mobileno=" + mobileno + ", password=" + password
+				+ ", updated_time=" + updated_time + ", orgid=" + orgid + ", device=" + device + "]";
+	}
 	@Id
 	@PrimaryKeyColumn(name = "userid", type = PrimaryKeyType.PARTITIONED)
 	private UUID userid ;

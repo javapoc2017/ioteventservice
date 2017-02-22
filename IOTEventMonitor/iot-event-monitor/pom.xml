@@ -63,7 +63,7 @@
 			<version>${spring.boot.version}</version>
 		</dependency>
 		<!-- Spring boot auto start  -->
-		<<dependency>
+		<dependency>
 	        <groupId>org.springframework.boot</groupId>
 	        <artifactId>spring-boot-devtools</artifactId>
 	        <version>${spring.boot.version}</version>

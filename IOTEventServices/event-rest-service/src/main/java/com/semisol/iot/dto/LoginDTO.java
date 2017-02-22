@@ -5,6 +5,15 @@ import java.util.Map;
 
 public class LoginDTO {
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "LoginDTO [username=" + username + ", first_name=" + first_name + ", last_name=" + last_name + ", email="
+				+ email + ", mobileno=" + mobileno + ", password=" + password + ", updated_time=" + updated_time
+				+ ", orgid=" + orgid + ", device=" + device + "]";
+	}
 	private String username ;
 	private String first_name;
 	private String last_name;
