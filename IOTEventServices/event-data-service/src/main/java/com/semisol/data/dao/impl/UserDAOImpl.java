@@ -47,4 +47,21 @@ public class UserDAOImpl implements UserDAO{
 		return false;
 	}
 
+
+
+	@Override
+	public boolean checkUserExists(User user) {
+		
+		try{
+		    Integer result= userRepository.verifyUserID(user.getUsername());
+		    logger.info("UserDAOImpl:checkUserExists"+result);
+		    if(result == 1){
+		    	return true;
+		    }
+		}catch(Exception ex){
+			return false;
+		}
+		return false;
+	}
+
 }

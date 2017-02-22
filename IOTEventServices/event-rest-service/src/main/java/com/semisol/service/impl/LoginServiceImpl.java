@@ -1,9 +1,14 @@
 package com.semisol.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.semisol.data.dao.api.UserDAO;
+import com.semisol.data.domain.User;
+import com.semisol.iot.dto.Errors;
 import com.semisol.iot.dto.LoginDTO;
 import com.semisol.iot.dto.RestResponse;
 import com.semisol.iot.util.ConverterUtll;
@@ -28,8 +33,20 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public RestResponse registerUser(LoginDTO loginDTO) {
 		RestResponse restResponse = new RestResponse();
-		boolean status = userDAO.saveUserInfo(ConverterUtll.convertDtoToDao(loginDTO));
-		restResponse.setStatus(status);
+		boolean status=false;
+		User user=ConverterUtll.convertDtoToDao(loginDTO);
+		if(!userDAO.checkUserExists(user)){
+		  status = userDAO.saveUserInfo(ConverterUtll.convertDtoToDao(loginDTO));
+		  restResponse.setStatus(status);
+		}else{
+		  restResponse.setStatus(status);
+		  Errors error=new Errors();
+		  error.setErrorMessage("User exists..Try with new User");
+		  error.setErrorType("User exists");
+		  List list=new ArrayList<>();
+		  list.add(error);
+		  restResponse.setError(list);
+		}
 		return restResponse;
 	}
 
