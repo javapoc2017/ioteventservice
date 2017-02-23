@@ -4,6 +4,10 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.semisol.data.dao.impl.UserDAOImpl;
 import com.semisol.data.domain.Device;
 import com.semisol.data.domain.IotEvents;
 import com.semisol.data.domain.Organization;
@@ -13,7 +17,8 @@ import com.semisol.iot.dto.LoginDTO;
 import com.semisol.iot.dto.OrganizationDTO;
 
 public class ConverterUtll {
-	
+	private static Logger logger = LoggerFactory.getLogger(ConverterUtll.class);
+
 	public static User convertDtoToDao(LoginDTO loginDTO){
 		Calendar cal=Calendar.getInstance();
 		User user= new User();
@@ -23,7 +28,7 @@ public class ConverterUtll {
 		user.setMobileno(loginDTO.getMobileno());
 		user.setOrgid(loginDTO.getOrgid());
 		user.setPassword(loginDTO.getPassword());
-		user.setDevice(loginDTO.getDevice());
+		user.getDevice().addAll(loginDTO.getDevice());
 		user.setUpdated_time(new Timestamp(cal.getTimeInMillis()));
 		user.setUserid(UUID.randomUUID());
 		user.setUsername(loginDTO.getUsername());

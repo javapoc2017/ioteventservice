@@ -15,20 +15,17 @@ public class AdminServiceImpl implements AdminService {
 
 	@Autowired
 	DeviceDAO deviceDAO;
-	
+
 	@Autowired
 	OrganizationDAO organizationDAO;
-	
+
 	@Override
 	public boolean saveDeviceInfo(DeviceDTO deviceDTO) {
-		
 		return deviceDAO.saveDeviceInfo(ConverterUtll.convertDtoToDao(deviceDTO));
-		 
 	}
 
 	@Override
 	public boolean updateUserDevice() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -36,7 +33,5 @@ public class AdminServiceImpl implements AdminService {
 	public boolean saveOrganizationInfo(OrganizationDTO organizationDTO) {
 		return organizationDAO.saveOrganizationData(ConverterUtll.convertDtoToDao(organizationDTO));
 	}
-
-	
 
 }

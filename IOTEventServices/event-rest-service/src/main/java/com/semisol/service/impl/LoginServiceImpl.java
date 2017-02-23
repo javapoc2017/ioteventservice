@@ -19,8 +19,6 @@ public class LoginServiceImpl implements LoginService {
 
 	@Autowired
 	private UserDAO userDAO;
-	
-	
 
 	@Override
 	public RestResponse validateUser(LoginDTO loginDTO) {
@@ -33,19 +31,19 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public RestResponse registerUser(LoginDTO loginDTO) {
 		RestResponse restResponse = new RestResponse();
-		boolean status=false;
-		User user=ConverterUtll.convertDtoToDao(loginDTO);
-		if(!userDAO.checkUserExists(user)){
-		  status = userDAO.saveUserInfo(ConverterUtll.convertDtoToDao(loginDTO));
-		  restResponse.setStatus(status);
-		}else{
-		  restResponse.setStatus(status);
-		  Errors error=new Errors();
-		  error.setErrorMessage("User exists..Try with new User");
-		  error.setErrorType("User exists");
-		  List list=new ArrayList<>();
-		  list.add(error);
-		  restResponse.setError(list);
+		boolean status = false;
+		User user = ConverterUtll.convertDtoToDao(loginDTO);
+		if (!userDAO.checkUserExists(user)) {
+			status = userDAO.saveUserInfo(ConverterUtll.convertDtoToDao(loginDTO));
+			restResponse.setStatus(status);
+		} else {
+			restResponse.setStatus(status);
+			Errors error = new Errors();
+			error.setErrorMessage("User exists..Try with new User");
+			error.setErrorType("User exists");
+			List<Errors> list = new ArrayList<>();
+			list.add(error);
+			restResponse.setError(list);
 		}
 		return restResponse;
 	}

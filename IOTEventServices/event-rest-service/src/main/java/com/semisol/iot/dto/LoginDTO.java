@@ -1,39 +1,30 @@
 package com.semisol.iot.dto;
 
-import java.sql.Timestamp;
-import java.util.Map;
+import java.util.List;
+import java.util.UUID;
 
 public class LoginDTO {
 	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "LoginDTO [username=" + username + ", first_name=" + first_name + ", last_name=" + last_name + ", email="
-				+ email + ", mobileno=" + mobileno + ", password=" + password + ", updated_time=" + updated_time
-				+ ", orgid=" + orgid + ", device=" + device + "]";
-	}
 	private String username ;
 	private String first_name;
 	private String last_name;
 	private String email;
 	private String mobileno;
 	private String password;
-	private Timestamp updated_time;
-	private Integer orgid;
-	private Map<String,String> device;
+	//private Date updated_time;
+	private UUID orgid;
+	private List<UUID> device;
 	
 	/**
 	 * @return the device
 	 */
-	public Map<String, String> getDevice() {
+	public List<UUID> getDevice() {
 		return device;
 	}
 	/**
 	 * @param device the device to set
 	 */
-	public void setDevice(Map<String, String> device) {
+	public void setDevice(List<UUID> device) {
 		this.device = device;
 	}
 	/**
@@ -110,28 +101,35 @@ public class LoginDTO {
 	}
 	/**
 	 * @return the updated_time
-	 */
-	public Timestamp getUpdated_time() {
+	 *//*
+	public Date getUpdated_time() {
 		return updated_time;
 	}
-	/**
+	*//**
 	 * @param updated_time the updated_time to set
-	 */
-	public void setUpdated_time(Timestamp updated_time) {
+	 *//*
+	public void setUpdated_time(Date updated_time) {
 		this.updated_time = updated_time;
-	}
+	}*/
 	/**
 	 * @return the orgid
 	 */
-	public Integer getOrgid() {
+	public UUID getOrgid() {
 		return orgid;
 	}
 	/**
 	 * @param orgid the orgid to set
 	 */
-	public void setOrgid(Integer orgid) {
+	public void setOrgid(UUID orgid) {
 		this.orgid = orgid;
 	}
 	
-	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "LoginDTO [username=" + username + ", first_name=" + first_name + ", last_name=" + last_name + ", email="
+				+ email + ", mobileno=" + mobileno + ", password=" + password +  ", orgid=" + orgid + ", device=" + device + "]";
+	}
 }

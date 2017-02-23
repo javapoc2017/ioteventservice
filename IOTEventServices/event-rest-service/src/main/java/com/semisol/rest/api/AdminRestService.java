@@ -17,40 +17,39 @@ import com.semisol.service.api.AdminService;
 @RequestMapping(value = "/v1/iot")
 public class AdminRestService {
 	private static Logger logger = LoggerFactory.getLogger(AdminRestService.class);
-	
+
 	@Autowired
 	private AdminService adminService;
-	
-	@RequestMapping(value="/admin/device",method=RequestMethod.POST)
+
+	@RequestMapping(value = "/admin/device", method = RequestMethod.POST)
 	public RestResponse addDevice(@RequestBody DeviceDTO deviceDTO) {
-		logger.info("AdminRestService:addDevice,request"+deviceDTO);
-		boolean status=adminService.saveDeviceInfo(deviceDTO);
-		RestResponse restResponse= new RestResponse();
+		logger.info("AdminRestService:addDevice,request" + deviceDTO);
+		boolean status = adminService.saveDeviceInfo(deviceDTO);
+		RestResponse restResponse = new RestResponse();
 		restResponse.setStatus(status);
-		logger.info("AdminRestService:addDevice,response"+restResponse);
-	    return restResponse;
+		logger.info("AdminRestService:addDevice,response" + restResponse);
+		return restResponse;
 	}
-	
-	@RequestMapping(value="/admin/org",method=RequestMethod.POST)
+
+	@RequestMapping(value = "/admin/org", method = RequestMethod.POST)
 	public RestResponse addOrganization(@RequestBody OrganizationDTO organizationDTO) {
-		logger.info("AdminRestService:addOrganization,request"+organizationDTO);
-		boolean status=adminService.saveOrganizationInfo(organizationDTO);
-		RestResponse restResponse= new RestResponse();
+		logger.info("AdminRestService:addOrganization,request" + organizationDTO);
+		boolean status = adminService.saveOrganizationInfo(organizationDTO);
+		RestResponse restResponse = new RestResponse();
 		restResponse.setStatus(status);
-		logger.info("AdminRestService:addOrganization,response"+restResponse);
-	    return restResponse;
+		logger.info("AdminRestService:addOrganization,response" + restResponse);
+		return restResponse;
 	}
-	
-	//Need to work on this..
-	@RequestMapping(value="/admin/user/device",method=RequestMethod.POST)
+
+	// Need to work on this..
+	@RequestMapping(value = "/admin/user/device", method = RequestMethod.POST)
 	public RestResponse updateDeviceInfo(@RequestBody OrganizationDTO organizationDTO) {
-		logger.info("AdminRestService:addOrganization,request"+organizationDTO);
-		boolean status=adminService.saveOrganizationInfo(organizationDTO);
-		RestResponse restResponse= new RestResponse();
+		logger.info("AdminRestService:addOrganization,request" + organizationDTO);
+		boolean status = adminService.saveOrganizationInfo(organizationDTO);
+		RestResponse restResponse = new RestResponse();
 		restResponse.setStatus(status);
-		logger.info("AdminRestService:addOrganization,response"+restResponse);
-	    return restResponse;
+		logger.info("AdminRestService:addOrganization,response" + restResponse);
+		return restResponse;
 	}
-	
 
 }

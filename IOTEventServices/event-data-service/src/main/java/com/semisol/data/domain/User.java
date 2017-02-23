@@ -1,7 +1,8 @@
 package com.semisol.data.domain;
 
-import java.sql.Timestamp;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.cassandra.core.PrimaryKeyType;
@@ -11,15 +12,6 @@ import org.springframework.data.cassandra.mapping.Table;
 
 @Table
 public class User {
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "User [userid=" + userid + ", username=" + username + ", first_name=" + first_name + ", last_name="
-				+ last_name + ", email=" + email + ", mobileno=" + mobileno + ", password=" + password
-				+ ", updated_time=" + updated_time + ", orgid=" + orgid + ", device=" + device + "]";
-	}
 	@Id
 	@PrimaryKeyColumn(name = "userid", type = PrimaryKeyType.PARTITIONED)
 	private UUID userid ;
@@ -29,9 +21,9 @@ public class User {
 	private String email;
 	private String mobileno;
 	private String password;
-	private Timestamp updated_time;
-	private Integer orgid;
-	private Map<String,String> device;
+	private Date updated_time;
+	private UUID orgid;
+	private List<UUID> device = new ArrayList<>();
 	/**
 	 * @return the userid
 	 */
@@ -119,37 +111,37 @@ public class User {
 	/**
 	 * @return the updated_time
 	 */
-	public Timestamp getUpdated_time() {
+	public Date getUpdated_time() {
 		return updated_time;
 	}
 	/**
 	 * @param updated_time the updated_time to set
 	 */
-	public void setUpdated_time(Timestamp updated_time) {
+	public void setUpdated_time(Date updated_time) {
 		this.updated_time = updated_time;
 	}
 	/**
 	 * @return the orgid
 	 */
-	public Integer getOrgid() {
+	public UUID getOrgid() {
 		return orgid;
 	}
 	/**
 	 * @param orgid the orgid to set
 	 */
-	public void setOrgid(Integer orgid) {
+	public void setOrgid(UUID orgid) {
 		this.orgid = orgid;
 	}
 	/**
 	 * @return the stringdevice
 	 */
-	public Map<String, String> getDevice() {
+	public List<UUID> getDevice() {
 		return device;
 	}
 	/**
 	 * @param stringdevice the stringdevice to set
 	 */
-	public void setDevice(Map<String, String> device) {
+	public void setDevice(List<UUID> device) {
 		device = device;
 	}
 	/* (non-Javadoc)
@@ -235,5 +227,13 @@ public class User {
 			return false;
 		return true;
 	}
-
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "User [userid=" + userid + ", username=" + username + ", first_name=" + first_name + ", last_name="
+				+ last_name + ", email=" + email + ", mobileno=" + mobileno + ", password=" + password
+				+ ", updated_time=" + updated_time + ", orgid=" + orgid + ", device=" + device + "]";
+	}
 }

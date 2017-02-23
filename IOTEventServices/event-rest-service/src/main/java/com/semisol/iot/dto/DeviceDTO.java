@@ -7,7 +7,7 @@ public class DeviceDTO {
 	private String dev_macid;
 	private String devname;
 	private Map<String,String> attributes;
-	/**
+	/** 
 	 * @return the devid
 	 */
 	public String getDevid() {

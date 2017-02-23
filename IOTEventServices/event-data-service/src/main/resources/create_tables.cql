@@ -31,8 +31,8 @@ email text,
 mobileno text,
 password text,
 updated_time timestamp,
-orgid int,
-device map<text, text>,
+orgid UUID,
+device list<UUID>,
 PRIMARY KEY (username)
 );
 
