@@ -8,17 +8,15 @@ import com.semisol.data.domain.Device;
 import com.semisol.data.repository.DeviceRepository;
 
 @Configuration
-public class DeviceDAOImpl implements DeviceDAO{
-	
+public class DeviceDAOImpl implements DeviceDAO {
+
 	@Autowired
 	private DeviceRepository deviceRepository;
 
-	
-
 	public boolean saveDeviceInfo(Device device) {
-		try{
+		try {
 			deviceRepository.save(device);
-		}catch(Exception ex){
+		} catch (Exception ex) {
 			return false;
 		}
 		return true;

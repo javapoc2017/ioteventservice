@@ -6,7 +6,5 @@ import com.semisol.data.domain.Organization;
 
 @Configuration
 public interface OrganizationDAO {
-	
 	boolean saveOrganizationData(Organization organization);
-
 }

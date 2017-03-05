@@ -6,27 +6,27 @@ import java.util.UUID;
 public class LoginDTO {
 	
 	private String username ;
-	private String first_name;
-	private String last_name;
+	private String firsName;
+	private String lasName;
 	private String email;
-	private String mobileno;
+	private String mobileNo;
 	private String password;
-	//private Date updated_time;
-	private UUID orgid;
+	private UUID orgId;
 	private List<UUID> device;
-	
+	private boolean status;
 	/**
-	 * @return the device
+	 * @return the gId
 	 */
-	public List<UUID> getDevice() {
-		return device;
+	public UUID getgId() {
+		return gId;
 	}
 	/**
-	 * @param device the device to set
+	 * @param gId the gId to set
 	 */
-	public void setDevice(List<UUID> device) {
-		this.device = device;
+	public void setgId(UUID gId) {
+		this.gId = gId;
 	}
+	private UUID gId;
 	/**
 	 * @return the username
 	 */
@@ -40,28 +40,28 @@ public class LoginDTO {
 		this.username = username;
 	}
 	/**
-	 * @return the first_name
+	 * @return the firsName
 	 */
-	public String getFirst_name() {
-		return first_name;
+	public String getFirsName() {
+		return firsName;
 	}
 	/**
-	 * @param first_name the first_name to set
+	 * @param firsName the firsName to set
 	 */
-	public void setFirst_name(String first_name) {
-		this.first_name = first_name;
+	public void setFirsName(String firsName) {
+		this.firsName = firsName;
 	}
 	/**
-	 * @return the last_name
+	 * @return the lasName
 	 */
-	public String getLast_name() {
-		return last_name;
+	public String getLasName() {
+		return lasName;
 	}
 	/**
-	 * @param last_name the last_name to set
+	 * @param lasName the lasName to set
 	 */
-	public void setLast_name(String last_name) {
-		this.last_name = last_name;
+	public void setLasName(String lasName) {
+		this.lasName = lasName;
 	}
 	/**
 	 * @return the email
@@ -76,16 +76,16 @@ public class LoginDTO {
 		this.email = email;
 	}
 	/**
-	 * @return the mobileno
+	 * @return the mobileNo
 	 */
-	public String getMobileno() {
-		return mobileno;
+	public String getMobileNo() {
+		return mobileNo;
 	}
 	/**
-	 * @param mobileno the mobileno to set
+	 * @param mobileNo the mobileNo to set
 	 */
-	public void setMobileno(String mobileno) {
-		this.mobileno = mobileno;
+	public void setMobileNo(String mobileNo) {
+		this.mobileNo = mobileNo;
 	}
 	/**
 	 * @return the password
@@ -99,37 +99,43 @@ public class LoginDTO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	 
 	/**
-	 * @return the updated_time
-	 *//*
-	public Date getUpdated_time() {
-		return updated_time;
-	}
-	*//**
-	 * @param updated_time the updated_time to set
-	 *//*
-	public void setUpdated_time(Date updated_time) {
-		this.updated_time = updated_time;
-	}*/
-	/**
-	 * @return the orgid
+	 * @return the orgId
 	 */
-	public UUID getOrgid() {
-		return orgid;
+	public UUID getOrgId() {
+		return orgId;
 	}
 	/**
-	 * @param orgid the orgid to set
+	 * @param orgId the orgId to set
 	 */
-	public void setOrgid(UUID orgid) {
-		this.orgid = orgid;
+	public void setOrgId(UUID orgId) {
+		this.orgId = orgId;
+	}
+	/**
+	 * @return the device
+	 */
+	public List<UUID> getDevice() {
+		return device;
+	}
+	/**
+	 * @param device the device to set
+	 */
+	public void setDevice(List<UUID> device) {
+		this.device = device;
+	}
+	/**
+	 * @return the status
+	 */
+	public boolean isStatus() {
+		return status;
+	}
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "LoginDTO [username=" + username + ", first_name=" + first_name + ", last_name=" + last_name + ", email="
-				+ email + ", mobileno=" + mobileno + ", password=" + password +  ", orgid=" + orgid + ", device=" + device + "]";
-	}
+	
 }

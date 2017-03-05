@@ -7,46 +7,48 @@ import org.springframework.cassandra.core.PrimaryKeyType;
 import org.springframework.data.cassandra.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.mapping.Table;
 
-
 @Table
 public class Organization {
-	
-	
-	private UUID orgid;
-	
-	@PrimaryKeyColumn(name = "orgname", type = PrimaryKeyType.PARTITIONED)
-	private String orgname;
-	
+
+	@PrimaryKeyColumn(name = "orgId", type = PrimaryKeyType.PARTITIONED)
+	private UUID orgId;
+
+	private String name;
+
 	private String description;
+
+	private Timestamp lastModified;
 	
-	private Timestamp updated_time;
+	private boolean status;
 
 	/**
-	 * @return the orgid
+	 * @return the orgId
 	 */
-	public UUID getOrgid() {
-		return orgid;
+	public UUID getOrgId() {
+		return orgId;
 	}
 
 	/**
-	 * @param orgid the orgid to set
+	 * @param orgId
+	 *            the orgId to set
 	 */
-	public void setOrgid(UUID orgid) {
-		this.orgid = orgid;
+	public void setOrgId(UUID orgId) {
+		this.orgId = orgId;
 	}
 
 	/**
-	 * @return the orgname
+	 * @return the name
 	 */
-	public String getOrgname() {
-		return orgname;
+	public String getName() {
+		return name;
 	}
 
 	/**
-	 * @param orgname the orgname to set
+	 * @param name
+	 *            the name to set
 	 */
-	public void setOrgname(String orgname) {
-		this.orgname = orgname;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	/**
@@ -57,75 +59,46 @@ public class Organization {
 	}
 
 	/**
-	 * @param description the description to set
+	 * @param description
+	 *            the description to set
 	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
 	/**
-	 * @return the updated_time
+	 * @return the lastModified
 	 */
-	public Timestamp getUpdated_time() {
-		return updated_time;
+	public Timestamp getLastModified() {
+		return lastModified;
 	}
 
 	/**
-	 * @param updated_time the updated_time to set
+	 * @param lastModified
+	 *            the lastModified to set
 	 */
-	public void setUpdated_time(Timestamp updated_time) {
-		this.updated_time = updated_time;
+	public void setLastModified(Timestamp lastModified) {
+		this.lastModified = lastModified;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
+	/**
+	 * @return the status
 	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + ((orgid == null) ? 0 : orgid.hashCode());
-		result = prime * result + ((orgname == null) ? 0 : orgname.hashCode());
-		result = prime * result + ((updated_time == null) ? 0 : updated_time.hashCode());
-		return result;
+	public boolean isStatus() {
+		return status;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
+	/**
+	 * @param status the status to set
 	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Organization other = (Organization) obj;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		} else if (!description.equals(other.description))
-			return false;
-		if (orgid == null) {
-			if (other.orgid != null)
-				return false;
-		} else if (!orgid.equals(other.orgid))
-			return false;
-		if (orgname == null) {
-			if (other.orgname != null)
-				return false;
-		} else if (!orgname.equals(other.orgname))
-			return false;
-		if (updated_time == null) {
-			if (other.updated_time != null)
-				return false;
-		} else if (!updated_time.equals(other.updated_time))
-			return false;
-		return true;
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Organization [orgId=" + orgId + ", name=" + name + ", description=" + description + ", lastModified="
+				+ lastModified + "]";
+	}
 
 }

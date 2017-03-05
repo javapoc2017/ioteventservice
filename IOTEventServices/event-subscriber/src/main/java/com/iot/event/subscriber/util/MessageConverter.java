@@ -9,7 +9,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
-import com.semisol.data.domain.IotEvents;
+import com.semisol.data.domain.DeviceEvent;
 
 public class MessageConverter {
 
@@ -22,8 +22,8 @@ public class MessageConverter {
 		return gson;
 	}
 	
-	public static IotEvents convertJsonToMapperObject(String jsonrString) throws JsonParseException{
-		IotEvents iotEvents = getGsonObject().fromJson(jsonrString, new TypeToken<IotEvents>(){}.getType());
+	public static DeviceEvent convertJsonToMapperObject(String jsonrString) throws JsonParseException{
+		DeviceEvent iotEvents = getGsonObject().fromJson(jsonrString, new TypeToken<DeviceEvent>(){}.getType());
 		iotEvents.setEventId(UUID.randomUUID());
 		if(iotEvents.getEventTime() == null){
 			Calendar cal=Calendar.getInstance();

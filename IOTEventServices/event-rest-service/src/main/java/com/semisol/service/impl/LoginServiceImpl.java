@@ -41,7 +41,7 @@ public class LoginServiceImpl implements LoginService {
 			Errors error = new Errors();
 			error.setErrorMessage("User exists..Try with new User");
 			error.setErrorType("User exists");
-			List<Errors> list = new ArrayList<>();
+			List<Errors> list = new ArrayList<Errors>();
 			list.add(error);
 			restResponse.setError(list);
 		}

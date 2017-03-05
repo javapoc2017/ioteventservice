@@ -1,11 +1,13 @@
 package com.semisol.iot.dto;
 
-public class OrganizationDTO {
-	
-	private String name;
+import java.util.Date;
+import java.util.UUID;
 
+public class LocationDTO {
+	private String name;
+	private String latitude;
+	private String longitude;
 	private String description;
-	
 	private boolean status;
 
 	/**
@@ -24,6 +26,36 @@ public class OrganizationDTO {
 	}
 
 	/**
+	 * @return the latitude
+	 */
+	public String getLatitude() {
+		return latitude;
+	}
+
+	/**
+	 * @param latitude
+	 *            the latitude to set
+	 */
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+
+	/**
+	 * @return the longitude
+	 */
+	public String getLongitude() {
+		return longitude;
+	}
+
+	/**
+	 * @param longitude
+	 *            the longitude to set
+	 */
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
+
+	/**
 	 * @return the description
 	 */
 	public String getDescription() {
@@ -38,6 +70,7 @@ public class OrganizationDTO {
 		this.description = description;
 	}
 
+
 	/**
 	 * @return the status
 	 */
@@ -46,10 +79,13 @@ public class OrganizationDTO {
 	}
 
 	/**
-	 * @param status the status to set
+	 * @param status
+	 *            the status to set
 	 */
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
+
+	 
 
 }

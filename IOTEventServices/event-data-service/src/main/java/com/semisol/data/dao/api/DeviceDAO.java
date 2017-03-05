@@ -6,7 +6,5 @@ import com.semisol.data.domain.Device;
 
 @Configuration
 public interface DeviceDAO {
-	
 	boolean saveDeviceInfo(Device device);
-
 }

@@ -14,8 +14,8 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.stereotype.Service;
 
 import com.iot.event.subscriber.util.MessageConverter;
-import com.semisol.data.dao.api.IotEventsDAO;
-import com.semisol.data.domain.IotEvents;
+import com.semisol.data.dao.api.DeviceEventsDAO;
+import com.semisol.data.domain.DeviceEvent;
 
 @Service
 public class EventSubscriber implements MqttCallback, InitializingBean {
@@ -31,7 +31,7 @@ public class EventSubscriber implements MqttCallback, InitializingBean {
 	private MqttClient mqttClient;
 
 	@Autowired
-	private IotEventsDAO iotEventsDAO;
+	private DeviceEventsDAO iotEventsDAO;
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
@@ -44,7 +44,7 @@ public class EventSubscriber implements MqttCallback, InitializingBean {
 	public void messageArrived(String topic, MqttMessage message) {
 		logger.info("Topic name {}, payload {}", topic, new String(message.getPayload()));
 		try {
-			IotEvents iotEvents = MessageConverter.convertJsonToMapperObject(new String(message.getPayload()));
+			DeviceEvent iotEvents = MessageConverter.convertJsonToMapperObject(new String(message.getPayload()));
 			iotEventsDAO.saveEventsInfo(iotEvents);
 			//logger.info(""+iotEventsDAO.findLatestEventByDevice("12334"));
 		} catch (Exception ex) {

@@ -31,7 +31,7 @@ public class UserDAOImpl implements UserDAO {
 	public boolean validateUser(User user) {
 		try {
 			logger.info("UserDAOImpl:validateUser" + user);
-			User userData = userRepository.verifyUserCredentials(user.getUsername());
+			User userData = userRepository.verifyUserCredentials(user.getUserName());
 			if (userData.getPassword().equals(PasswordUtil.getEncryptedPassword(user.getPassword()))) {
 				return true;
 			}
@@ -45,7 +45,7 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public boolean checkUserExists(User user) {
 		try {
-			Integer result = userRepository.verifyUserID(user.getUsername());
+			Integer result = userRepository.verifyUserID(user.getUserName());
 			logger.info("UserDAOImpl:checkUserExists" + result);
 			if (result == 1) {
 				return true;

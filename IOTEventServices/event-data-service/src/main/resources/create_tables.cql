@@ -4,40 +4,78 @@ CREATE KEYSPACE iotevents_v1 WITH REPLICATION = { 'class' : 'SimpleStrategy', 'r
 
 use iotevents_v1;
 
-CREATE TABLE organization(
-orgid UUID, 
-orgname text,
+CREATE TABLE category(
+catId UUID,
+name text,
 description text,
-updated_time timestamp,
-PRIMARY KEY (orgname)
+lastModified timestamp,
+PRIMARY KEY (catId)
+);
+
+CREATE TABLE location(
+locId UUID,
+name text,
+latitude text,
+longitude text,
+description text,
+lastModified timestamp,
+status boolean,
+PRIMARY KEY (locId)
+);
+
+CREATE TABLE organization(
+orgId UUID, 
+name text,
+description text,
+lastModified timestamp,
+status boolean,
+PRIMARY KEY (orgId)
+);
+
+CREATE TABLE gateway(
+gId UUID,
+name text,
+macId text,
+description text,
+lastModified timestamp,
+status boolean,
+locId UUID,
+orgId UUID,
+PRIMARY KEY (gId)
 );
 
 CREATE TABLE device(
-devid UUID,
-dev_macid text,
-devname text,
+devId UUID,
+macId text,
+name text,
 attributes map<text,text>,
-updated_time timestamp,
-PRIMARY KEY (devid)
+status boolean,
+lastModified timestamp,
+catId UUID,
+gId UUID,
+locId UUID,
+PRIMARY KEY (devId)
 );
 
 
 CREATE TABLE user(
-userid UUID,
-username text,
-first_name text,
-last_name text,
+userId UUID,
+userName text,
+firstName text,
+lastName text,
 email text,
-mobileno text,
+mobileNo text,
 password text,
-updated_time timestamp,
-orgid UUID,
+status boolean,
+lastModified timestamp,
+orgId UUID,
 device list<UUID>,
+gId UUID,
 PRIMARY KEY (username)
 );
 
 
-CREATE TABLE iot_events(
+CREATE TABLE device_events(
 eventId UUID,
 devId text,
 loginId text,
@@ -50,6 +88,3 @@ PRIMARY KEY (eventId)
 //DESCRIBE keyspaces;
 //use iotevents_v1
 //describe tables; 
-//describe columnfamily
-//insert into iot_events JSON '{"devid": "1234","devloginid": "8766","devtype": "sensor","event_time": "2017-02-14 15:04:30","attributes": {"temp": "23", "humi": "12","x-axis": "12", "y-axis": "321","z-axis": "98"}}';
-

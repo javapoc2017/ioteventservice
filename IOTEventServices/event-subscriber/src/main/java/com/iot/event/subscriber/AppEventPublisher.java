@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.iot.event.subscriber.util.MessageConverter;
-import com.semisol.data.dao.api.IotEventsDAO;
-import com.semisol.data.domain.IotEvents;
+import com.semisol.data.dao.api.DeviceEventsDAO;
+import com.semisol.data.domain.DeviceEvent;
 
 @Service
 public class AppEventPublisher {
@@ -26,7 +26,7 @@ public class AppEventPublisher {
 	private MqttClient mqttClient;
 	
 	@Autowired
-	private IotEventsDAO iotEventsDAO;
+	private DeviceEventsDAO iotEventsDAO;
 	
 	public void publishAppEvent(String eventMessage){
 		try {
@@ -39,7 +39,7 @@ public class AppEventPublisher {
 		}
 	}
 	
-	public void publishAppEvent(IotEvents iotEvents){
+	public void publishAppEvent(DeviceEvent iotEvents){
 		try {
 			mqttClient = mqttConfig.createMqttClient();
 			MqttMessage message = new MqttMessage(MessageConverter.convertObjectToJson(iotEvents).getBytes());

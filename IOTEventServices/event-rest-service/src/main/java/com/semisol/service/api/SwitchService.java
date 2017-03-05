@@ -1,9 +1,9 @@
 package com.semisol.service.api;
 
-import com.semisol.iot.dto.IotEventsDTO;
+import com.semisol.iot.dto.DeviceEventsDTO;
 
 public interface SwitchService {
 	
-	boolean updateSwitch(IotEventsDTO iotEventsDTO);
+	boolean updateSwitch(DeviceEventsDTO iotEventsDTO);
 
 }

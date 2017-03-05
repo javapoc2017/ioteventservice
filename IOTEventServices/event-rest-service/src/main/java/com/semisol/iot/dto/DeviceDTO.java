@@ -1,61 +1,80 @@
 package com.semisol.iot.dto;
 
+import java.sql.Timestamp;
 import java.util.Map;
+import java.util.UUID;
 
 public class DeviceDTO {
-	private String devid;
-	private String dev_macid;
-	private String devname;
+	private UUID devId;
+	private String macId;
+	private String name;
 	private Map<String,String> attributes;
-	/** 
-	 * @return the devid
-	 */
-	public String getDevid() {
-		return devid;
+	private boolean status;
+	private Timestamp lastModified;
+	private UUID catId;
+	private UUID gId;
+	private UUID locId;
+	public UUID getDevId() {
+		return devId;
 	}
-	/**
-	 * @param devid the devid to set
-	 */
-	public void setDevid(String devid) {
-		this.devid = devid;
+	public void setDevId(UUID devId) {
+		this.devId = devId;
 	}
-	/**
-	 * @return the dev_macid
-	 */
-	public String getDev_macid() {
-		return dev_macid;
+	public String getMacId() {
+		return macId;
 	}
-	/**
-	 * @param dev_macid the dev_macid to set
-	 */
-	public void setDev_macid(String dev_macid) {
-		this.dev_macid = dev_macid;
+	public void setMacId(String macId) {
+		this.macId = macId;
 	}
-	/**
-	 * @return the devname
-	 */
-	public String getDevname() {
-		return devname;
+	public String getName() {
+		return name;
 	}
-	/**
-	 * @param devname the devname to set
-	 */
-	public void setDevname(String devname) {
-		this.devname = devname;
+	public void setName(String name) {
+		this.name = name;
 	}
-	/**
-	 * @return the attributes
-	 */
 	public Map<String, String> getAttributes() {
 		return attributes;
 	}
-	/**
-	 * @param attributes the attributes to set
-	 */
 	public void setAttributes(Map<String, String> attributes) {
 		this.attributes = attributes;
 	}
-	
-	
+	public boolean isStatus() {
+		return status;
+	}
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+	public Timestamp getLastModified() {
+		return lastModified;
+	}
+	public void setLastModified(Timestamp lastModified) {
+		this.lastModified = lastModified;
+	}
+	public UUID getCatId() {
+		return catId;
+	}
+	public void setCatId(UUID catId) {
+		this.catId = catId;
+	}
+	public UUID getgId() {
+		return gId;
+	}
+	public void setgId(UUID gId) {
+		this.gId = gId;
+	}
+	public UUID getLocId() {
+		return locId;
+	}
+	public void setLocId(UUID locId) {
+		this.locId = locId;
+	}
+
+	@Override
+	public String toString() {
+		return "Device [devId=" + devId + ", macId=" + macId + ", name=" + name + ", attributes=" + attributes
+				+ ", status=" + status + ", lastModified=" + lastModified + ", catId=" + catId + ", gId=" + gId
+				+ ", locId=" + locId + "]";
+	}
+		
 
 }

@@ -8,9 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.semisol.iot.dto.CategoryDTO;
 import com.semisol.iot.dto.DeviceDTO;
-import com.semisol.iot.dto.RestResponse;
+import com.semisol.iot.dto.GatewayDTO;
+import com.semisol.iot.dto.LocationDTO;
 import com.semisol.iot.dto.OrganizationDTO;
+import com.semisol.iot.dto.RestResponse;
 import com.semisol.service.api.AdminService;
 
 @RestController
@@ -21,6 +24,36 @@ public class AdminRestService {
 	@Autowired
 	private AdminService adminService;
 
+	@RequestMapping(value = "/admin/category", method = RequestMethod.POST)
+	public RestResponse addCategory(@RequestBody CategoryDTO categoryDTO) {
+		logger.info("AdminRestService:addCategory,request" + categoryDTO);
+		boolean status = adminService.saveCategoryInfo(categoryDTO);
+		RestResponse restResponse = new RestResponse();
+		restResponse.setStatus(status);
+		logger.info("AdminRestService:addCategory,response" + restResponse);
+		return restResponse;
+	}
+	
+	@RequestMapping(value = "/admin/location", method = RequestMethod.POST)
+	public RestResponse addLocation(@RequestBody LocationDTO locationDTO) {
+		logger.info("addLocation,request" + locationDTO);
+		boolean status = adminService.saveLocationInfo(locationDTO);
+		RestResponse restResponse = new RestResponse();
+		restResponse.setStatus(status);
+		logger.info("AdminRestService:addLocation,response" + restResponse);
+		return restResponse;
+	}
+	
+	@RequestMapping(value = "/admin/gateway", method = RequestMethod.POST)
+	public RestResponse addGateway(@RequestBody GatewayDTO gatewayDTO) {
+		logger.info("addGateway,request" + gatewayDTO);
+		boolean status = adminService.saveGatewayInfo(gatewayDTO);
+		RestResponse restResponse = new RestResponse();
+		restResponse.setStatus(status);
+		logger.info("AdminRestService:addGateway,response" + restResponse);
+		return restResponse;
+	}
+	
 	@RequestMapping(value = "/admin/device", method = RequestMethod.POST)
 	public RestResponse addDevice(@RequestBody DeviceDTO deviceDTO) {
 		logger.info("AdminRestService:addDevice,request" + deviceDTO);
@@ -43,12 +76,12 @@ public class AdminRestService {
 
 	// Need to work on this..
 	@RequestMapping(value = "/admin/user/device", method = RequestMethod.POST)
-	public RestResponse updateDeviceInfo(@RequestBody OrganizationDTO organizationDTO) {
-		logger.info("AdminRestService:addOrganization,request" + organizationDTO);
-		boolean status = adminService.saveOrganizationInfo(organizationDTO);
+	public RestResponse addDeviceInfo(@RequestBody DeviceDTO deviceDTO) {
+		logger.info("AdminRestService:saveDeviceInfo,request" + deviceDTO);
+		boolean status = adminService.saveDeviceInfo(deviceDTO);
 		RestResponse restResponse = new RestResponse();
 		restResponse.setStatus(status);
-		logger.info("AdminRestService:addOrganization,response" + restResponse);
+		logger.info("AdminRestService:saveDeviceInfo,response" + restResponse);
 		return restResponse;
 	}
 

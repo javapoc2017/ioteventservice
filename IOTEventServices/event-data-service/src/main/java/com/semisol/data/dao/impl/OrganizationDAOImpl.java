@@ -20,7 +20,5 @@ public class OrganizationDAOImpl implements OrganizationDAO{
 			return false;
 		}
 		return true;
-		
 	}
-
 }

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.semisol.iot.dto.IotEventsDTO;
+import com.semisol.iot.dto.DeviceEventsDTO;
 import com.semisol.service.api.SwitchService;
 
 @RestController
@@ -20,7 +20,7 @@ public class SwitchRestService {
 	private SwitchService switchService;
 	
 	@RequestMapping(value="/switch/operation",method=RequestMethod.POST)
-	public void registerUser(@RequestBody IotEventsDTO iotEventsDTO) {
+	public void registerUser(@RequestBody DeviceEventsDTO iotEventsDTO) {
 		logger.info("LoginRestService:validateLogin,request"+iotEventsDTO);
 		 switchService.updateSwitch(iotEventsDTO);
 		logger.info("LoginRestService:validateLogin,response:processed");

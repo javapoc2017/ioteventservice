@@ -8,22 +8,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.iot.event.subscriber.AppEventPublisher;
-import com.semisol.data.dao.api.IotEventsDAO;
-import com.semisol.data.domain.IotEvents;
-import com.semisol.iot.dto.IotEventsDTO;
+import com.semisol.data.dao.api.DeviceEventsDAO;
+import com.semisol.data.domain.DeviceEvent;
+import com.semisol.iot.dto.DeviceEventsDTO;
 import com.semisol.service.api.SwitchService;
 
 @Service
 public class SwitchServiceImpl implements SwitchService {
 	
 	@Autowired
-	private IotEventsDAO iotEventsDAO;
+	private DeviceEventsDAO iotEventsDAO;
 	
 	@Autowired
 	private AppEventPublisher appEventPublisher;
 
 	@Override
-	public boolean updateSwitch(IotEventsDTO iotEventsDTO) {
+	public boolean updateSwitch(DeviceEventsDTO iotEventsDTO) {
 		
 		 try {
 			  appEventPublisher.publishAppEvent(convertDTOtoDAO(iotEventsDTO));
@@ -34,8 +34,8 @@ public class SwitchServiceImpl implements SwitchService {
 		 return false;
 	}
 	
-	private IotEvents convertDTOtoDAO(IotEventsDTO iotEventsDTO){
-		IotEvents iotEvents =new IotEvents();
+	private DeviceEvent convertDTOtoDAO(DeviceEventsDTO iotEventsDTO){
+		DeviceEvent iotEvents =new DeviceEvent();
 		iotEvents.setAttributes(iotEventsDTO.getAttributes());
 		iotEvents.setDevId(iotEventsDTO.getDevId());
 		iotEvents.setEventId(UUID.randomUUID());
