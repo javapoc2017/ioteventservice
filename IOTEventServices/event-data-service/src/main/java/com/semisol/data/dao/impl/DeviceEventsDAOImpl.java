@@ -21,7 +21,7 @@ public class DeviceEventsDAOImpl implements DeviceEventsDAO {
 	}
 
 	@Override
-	public DeviceEvent findLatestEventByDevice(String deviceId) throws Exception {
-		return deviceEventsRepository.findLatestEventByDevice(deviceId);
+	public DeviceEvent findLatestEventByDevice(String devId) throws Exception {
+		return deviceEventsRepository.findLatestEventByDevice(devId);
 	}
 }

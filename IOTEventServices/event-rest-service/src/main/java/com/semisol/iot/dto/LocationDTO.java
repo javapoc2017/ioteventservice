@@ -4,12 +4,20 @@ import java.util.Date;
 import java.util.UUID;
 
 public class LocationDTO {
+	private UUID locId;
 	private String name;
 	private String latitude;
 	private String longitude;
 	private String description;
 	private boolean status;
-
+	private Date lastModified;
+	
+	public Date getLastModified() {
+		return lastModified;
+	}
+	public void setLastModified(Date lastModified) {
+		this.lastModified = lastModified;
+	}
 	/**
 	 * @return the name
 	 */
@@ -84,6 +92,14 @@ public class LocationDTO {
 	 */
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+
+	public UUID getLocId() {
+		return locId;
+	}
+
+	public void setLocId(UUID locId) {
+		this.locId = locId;
 	}
 
 	 

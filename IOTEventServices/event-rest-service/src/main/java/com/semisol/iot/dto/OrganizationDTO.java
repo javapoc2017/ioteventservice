@@ -1,6 +1,11 @@
 package com.semisol.iot.dto;
 
-public class OrganizationDTO {
+import java.util.Date;
+import java.util.UUID;
+
+public class OrganizationDTO { 
+	
+	private UUID orgId;
 	
 	private String name;
 
@@ -8,6 +13,14 @@ public class OrganizationDTO {
 	
 	private boolean status;
 
+	private Date lastModified;
+	
+	public Date getLastModified() {
+		return lastModified;
+	}
+	public void setLastModified(Date lastModified) {
+		this.lastModified = lastModified;
+	}
 	/**
 	 * @return the name
 	 */
@@ -51,5 +64,14 @@ public class OrganizationDTO {
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
+
+	public UUID getOrgId() {
+		return orgId;
+	}
+
+	public void setOrgId(UUID orgId) {
+		this.orgId = orgId;
+	}
+
 
 }

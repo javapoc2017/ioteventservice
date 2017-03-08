@@ -1,6 +1,7 @@
 package com.semisol.data.domain;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.UUID;
 
 import org.springframework.cassandra.core.PrimaryKeyType;
@@ -17,7 +18,7 @@ public class Organization {
 
 	private String description;
 
-	private Timestamp lastModified;
+	private Date lastModified;
 	
 	private boolean status;
 
@@ -69,7 +70,7 @@ public class Organization {
 	/**
 	 * @return the lastModified
 	 */
-	public Timestamp getLastModified() {
+	public Date getLastModified() {
 		return lastModified;
 	}
 
@@ -77,7 +78,7 @@ public class Organization {
 	 * @param lastModified
 	 *            the lastModified to set
 	 */
-	public void setLastModified(Timestamp lastModified) {
+	public void setLastModified(Date lastModified) {
 		this.lastModified = lastModified;
 	}
 

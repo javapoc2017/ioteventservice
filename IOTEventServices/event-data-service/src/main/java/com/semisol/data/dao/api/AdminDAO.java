@@ -12,7 +12,7 @@ import com.semisol.data.domain.Organization;
 @Configuration
 public interface AdminDAO {
 
-	boolean saveCategoryInfo(Category category);
+	/*boolean saveCategoryInfo(Category category);
 
 	boolean saveGatewayInfo(Gateway gateway);
 
@@ -20,5 +20,5 @@ public interface AdminDAO {
 
 	boolean saveDeviceInfo(Device device);
 
-	boolean saveOrganizationData(Organization organization);
+	boolean saveOrganizationData(Organization organization);*/
 }

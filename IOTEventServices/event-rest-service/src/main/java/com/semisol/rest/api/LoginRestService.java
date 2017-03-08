@@ -13,14 +13,14 @@ import com.semisol.iot.dto.RestResponse;
 import com.semisol.service.api.LoginService;
 
 @RestController
-@RequestMapping(value = "/v1/iot")
+@RequestMapping(value = "/customer")
 public class LoginRestService {
 	private static Logger logger = LoggerFactory.getLogger(LoginRestService.class);
 
 	@Autowired
 	private LoginService loginService;
 
-	@RequestMapping(value = "/customer/registerUser", method = RequestMethod.POST)
+	@RequestMapping(value = "/registerUser", method = RequestMethod.POST)
 	public RestResponse registration(@RequestBody LoginDTO loginDTO) {
 		logger.info("LoginRestService:saveUser,request" + loginDTO);
 		RestResponse restResponse = loginService.registerUser(loginDTO);
@@ -28,7 +28,7 @@ public class LoginRestService {
 		return restResponse;
 	}
 
-	@RequestMapping(value = "/customer/login", method = RequestMethod.POST)
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public RestResponse validateLogin(@RequestBody LoginDTO loginDTO) {
 		logger.info("LoginRestService:validateLogin,request" + loginDTO);
 		RestResponse restResponse = loginService.validateUser(loginDTO);

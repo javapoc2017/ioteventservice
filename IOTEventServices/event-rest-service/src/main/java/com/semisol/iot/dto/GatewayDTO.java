@@ -1,14 +1,24 @@
 package com.semisol.iot.dto;
 
+import java.util.Date;
 import java.util.UUID;
 
 public class GatewayDTO {
+	private UUID gId;
 	private String name;
 	private String macId;
 	private String description;
 	private boolean status;
 	private UUID locId;
 	private UUID orgId;
+	private Date lastModified;
+	
+	public Date getLastModified() {
+		return lastModified;
+	}
+	public void setLastModified(Date lastModified) {
+		this.lastModified = lastModified;
+	}
 	/**
 	 * @return the name
 	 */
@@ -80,6 +90,12 @@ public class GatewayDTO {
 	 */
 	public void setOrgId(UUID orgId) {
 		this.orgId = orgId;
+	}
+	public UUID getgId() {
+		return gId;
+	}
+	public void setgId(UUID gId) {
+		this.gId = gId;
 	}
 	
 }

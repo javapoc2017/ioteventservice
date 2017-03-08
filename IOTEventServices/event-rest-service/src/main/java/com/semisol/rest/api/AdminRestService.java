@@ -16,43 +16,13 @@ import com.semisol.iot.dto.OrganizationDTO;
 import com.semisol.iot.dto.RestResponse;
 import com.semisol.service.api.AdminService;
 
-@RestController
-@RequestMapping(value = "/v1/iot")
+//@RestController
+//@RequestMapping(value = "/v1/iot")
 public class AdminRestService {
 	private static Logger logger = LoggerFactory.getLogger(AdminRestService.class);
 
-	@Autowired
+/*	@Autowired
 	private AdminService adminService;
-
-	@RequestMapping(value = "/admin/category", method = RequestMethod.POST)
-	public RestResponse addCategory(@RequestBody CategoryDTO categoryDTO) {
-		logger.info("AdminRestService:addCategory,request" + categoryDTO);
-		boolean status = adminService.saveCategoryInfo(categoryDTO);
-		RestResponse restResponse = new RestResponse();
-		restResponse.setStatus(status);
-		logger.info("AdminRestService:addCategory,response" + restResponse);
-		return restResponse;
-	}
-	
-	@RequestMapping(value = "/admin/location", method = RequestMethod.POST)
-	public RestResponse addLocation(@RequestBody LocationDTO locationDTO) {
-		logger.info("addLocation,request" + locationDTO);
-		boolean status = adminService.saveLocationInfo(locationDTO);
-		RestResponse restResponse = new RestResponse();
-		restResponse.setStatus(status);
-		logger.info("AdminRestService:addLocation,response" + restResponse);
-		return restResponse;
-	}
-	
-	@RequestMapping(value = "/admin/gateway", method = RequestMethod.POST)
-	public RestResponse addGateway(@RequestBody GatewayDTO gatewayDTO) {
-		logger.info("addGateway,request" + gatewayDTO);
-		boolean status = adminService.saveGatewayInfo(gatewayDTO);
-		RestResponse restResponse = new RestResponse();
-		restResponse.setStatus(status);
-		logger.info("AdminRestService:addGateway,response" + restResponse);
-		return restResponse;
-	}
 	
 	@RequestMapping(value = "/admin/device", method = RequestMethod.POST)
 	public RestResponse addDevice(@RequestBody DeviceDTO deviceDTO) {
@@ -83,6 +53,6 @@ public class AdminRestService {
 		restResponse.setStatus(status);
 		logger.info("AdminRestService:saveDeviceInfo,response" + restResponse);
 		return restResponse;
-	}
+	}*/
 
 }

@@ -18,7 +18,7 @@ import com.semisol.data.repository.OrganizationRepository;
 @Configuration
 public class AdminDAOImpl implements AdminDAO {
 
-	@Autowired
+	/*@Autowired
 	private DeviceRepository deviceRepository;
 	
 	@Autowired
@@ -83,6 +83,6 @@ public class AdminDAOImpl implements AdminDAO {
 			return false;
 		}
 		return true;
-	}
+	}*/
 
 }

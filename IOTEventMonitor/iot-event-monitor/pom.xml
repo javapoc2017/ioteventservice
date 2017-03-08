@@ -22,6 +22,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<event.serice.version>1.0.0</event.serice.version>
 		<spring.boot.version>1.4.3.RELEASE</spring.boot.version>
+		<java.version>1.8</java.version>
 		<start-class>com.iot.monitor.IotEventMonitorApplication</start-class>
 	</properties>
 
@@ -110,6 +111,16 @@
 
 	<build>
 		<plugins>
+		<plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.1</version>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                        <fork>${maven.compiler.plugin.fork}</fork>
+                    </configuration>
+                </plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
@@ -141,6 +152,7 @@
 					<useDefaultDelimiters>false</useDefaultDelimiters>
 				</configuration>
 			</plugin>
+			
 		</plugins>
 	</build>
 

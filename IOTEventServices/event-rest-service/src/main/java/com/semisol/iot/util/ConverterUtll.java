@@ -1,7 +1,9 @@
 package com.semisol.iot.util;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.UUID;
 
 import com.semisol.data.domain.Category;
@@ -40,13 +42,14 @@ public class ConverterUtll {
 	public static Device convertDtoToDao(DeviceDTO deviceDTO) {
 		Device device = new Device();
 		device.setMacId(deviceDTO.getMacId());
-		device.setDevId(UUID.randomUUID());
+		device.setDevId(deviceDTO.getDevId() == null ? UUID.randomUUID():deviceDTO.getDevId());
 		device.setName(deviceDTO.getName());
 		device.setAttributes(deviceDTO.getAttributes());
 		Calendar cal = Calendar.getInstance();
 		device.setLastModified(new Timestamp(cal.getTimeInMillis()));
 		device.setCatId(deviceDTO.getCatId());
 		device.setgId(deviceDTO.getgId());
+		device.setLocId(deviceDTO.getLocId());
 		device.setStatus(deviceDTO.isStatus());
 		return device;
 	}
@@ -54,7 +57,7 @@ public class ConverterUtll {
 	public static Organization convertDtoToDao(OrganizationDTO organizationDTO) {
 		Organization organization = new Organization();
 		organization.setDescription(organizationDTO.getDescription());
-		organization.setOrgId(UUID.randomUUID());
+		organization.setOrgId(organizationDTO.getOrgId() == null ? UUID.randomUUID():organizationDTO.getOrgId());
 		organization.setName(organizationDTO.getName());
 		Calendar cal = Calendar.getInstance();
 		organization.setLastModified(new Timestamp(cal.getTimeInMillis()));
@@ -65,7 +68,7 @@ public class ConverterUtll {
 
 	public static Category convertDtoToDao(CategoryDTO categoryDTO) {
 		Category category = new Category();
-		category.setCatId(UUID.randomUUID());
+		category.setCatId(categoryDTO.getCatId() == null ? UUID.randomUUID():categoryDTO.getCatId());
 		category.setName(categoryDTO.getName());
 		category.setDescription(categoryDTO.getDescription());
 		Calendar cal = Calendar.getInstance();
@@ -77,7 +80,7 @@ public class ConverterUtll {
 	public static Location convertDtoToDao(LocationDTO locationDTO) {
 		Location location = new Location();
 		location.setDescription(locationDTO.getDescription());
-		location.setLocId(UUID.randomUUID());
+		location.setLocId(locationDTO.getLocId() == null ? UUID.randomUUID():locationDTO.getLocId());
 		location.setName(locationDTO.getName());
 		location.setLatitude(locationDTO.getLatitude());
 		location.setLongitude(locationDTO.getLongitude());
@@ -91,7 +94,7 @@ public class ConverterUtll {
 	public static Gateway convertDtoToDao(GatewayDTO gatewayDTO) {
 		Gateway gateway = new Gateway();
 		gateway.setDescription(gatewayDTO.getDescription());
-		gateway.setgId(UUID.randomUUID());
+		gateway.setgId(gatewayDTO.getgId() == null ? UUID.randomUUID():gatewayDTO.getgId());
 		gateway.setName(gatewayDTO.getName());
 		gateway.setLocId(gatewayDTO.getLocId());
 		gateway.setMacId(gatewayDTO.getMacId());
@@ -102,5 +105,55 @@ public class ConverterUtll {
 		return gateway;
 
 	}
+	
+	public static OrganizationDTO convertDaoToDto(Organization organization) {
+		OrganizationDTO organizationDTO = new OrganizationDTO();
+		organizationDTO.setOrgId(organization.getOrgId());
+		organizationDTO.setName(organization.getName());
+		organizationDTO.setDescription(organization.getDescription());
+		organizationDTO.setStatus(organization.isStatus());
+		return organizationDTO;
+	}
+	
+	public static LocationDTO convertDaoToDto(Location location) {
+		LocationDTO locationDTO = new LocationDTO();
+		locationDTO.setName(location.getName());
+		locationDTO.setLatitude(location.getLatitude());
+		locationDTO.setLongitude(location.getLongitude());
+		locationDTO.setDescription(location.getDescription());
+		return locationDTO;
+	}
 
+	public static DeviceDTO convertDaoToDto(Device device) {
+		DeviceDTO deviceDTO = new DeviceDTO();
+		deviceDTO.setDevId(device.getDevId());
+		deviceDTO.setName(device.getName());
+		deviceDTO.setMacId(device.getMacId());
+		deviceDTO.setCatId(device.getCatId());
+		deviceDTO.setgId(device.getgId());
+		deviceDTO.setAttributes(device.getAttributes());
+		deviceDTO.setLastModified(device.getLastModified());
+		deviceDTO.setStatus(device.isStatus());
+		return deviceDTO;
+	}
+	
+	public static GatewayDTO convertDaoToDto(Gateway gateway) {
+		 GatewayDTO  gatewayDTO = new GatewayDTO();
+		 gatewayDTO.setLocId(gateway.getLocId());
+		 gatewayDTO.setName(gateway.getName());
+		 gatewayDTO.setOrgId(gateway.getOrgId());
+		 gatewayDTO.setMacId(gateway.getMacId());
+		 gatewayDTO.setDescription(gateway.getDescription());
+		 gatewayDTO.setStatus(gateway.isStatus());
+		return gatewayDTO;
+
+	}
+	
+	public static CategoryDTO convertDaoToDto(Category category) {
+		CategoryDTO categoryDTO = new CategoryDTO();
+		categoryDTO.setCatId(category.getCatId());
+		categoryDTO.setName(category.getName());
+		categoryDTO.setDescription(category.getDescription());
+		return categoryDTO;
+	}
 }

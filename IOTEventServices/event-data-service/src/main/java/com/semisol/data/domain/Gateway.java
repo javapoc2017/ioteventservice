@@ -1,6 +1,7 @@
 package com.semisol.data.domain;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.UUID;
 
 public class Gateway {
@@ -8,7 +9,7 @@ public class Gateway {
 	private String name;
 	private String macId;
 	private String description;
-	private Timestamp lastModified;
+	private Date lastModified;
 	private boolean status;
 	private UUID locId;
 	private UUID orgId;
@@ -63,13 +64,13 @@ public class Gateway {
 	/**
 	 * @return the lastModified
 	 */
-	public Timestamp getLastModified() {
+	public Date getLastModified() {
 		return lastModified;
 	}
 	/**
 	 * @param lastModified the lastModified to set
 	 */
-	public void setLastModified(Timestamp lastModified) {
+	public void setLastModified(Date lastModified) {
 		this.lastModified = lastModified;
 	}
 	/**

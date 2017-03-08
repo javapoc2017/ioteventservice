@@ -7,5 +7,5 @@ import com.semisol.data.domain.DeviceEvent;
 @Configuration
 public interface DeviceEventsDAO {
 	void saveEventsInfo(DeviceEvent deviceEvent) throws Exception;
-	DeviceEvent findLatestEventByDevice(String deviceId) throws Exception;
+	DeviceEvent findLatestEventByDevice(String devId) throws Exception;
 }

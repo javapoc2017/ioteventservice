@@ -1,6 +1,6 @@
 package com.semisol.data.domain;
 
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
 
@@ -17,7 +17,7 @@ public class Device {
 	private String name;
 	private Map<String,String> attributes;
 	private boolean status;
-	private Timestamp lastModified;
+	private Date lastModified;
 	private UUID catId;
 	private UUID gId;
 	private UUID locId;
@@ -51,10 +51,10 @@ public class Device {
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
-	public Timestamp getLastModified() {
+	public Date getLastModified() {
 		return lastModified;
 	}
-	public void setLastModified(Timestamp lastModified) {
+	public void setLastModified(Date lastModified) {
 		this.lastModified = lastModified;
 	}
 	public UUID getCatId() {
