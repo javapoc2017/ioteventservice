@@ -6,7 +6,7 @@
 	<groupId>com.iot</groupId>
 	<artifactId>iot-event-monitor</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
-	<packaging>war</packaging>
+   <packaging>jar</packaging>
 
 	<name>iot-event-monitor</name>
 	<description>Project for Spring Boot</description>
@@ -23,6 +23,7 @@
 		<event.serice.version>1.0.0</event.serice.version>
 		<spring.boot.version>1.4.3.RELEASE</spring.boot.version>
 		<java.version>1.8</java.version>
+		<jjwt.version>0.4</jjwt.version>
 		<start-class>com.iot.monitor.IotEventMonitorApplication</start-class>
 	</properties>
 
@@ -63,6 +64,31 @@
 			<artifactId>spring-boot-starter-aop</artifactId>
 			<version>${spring.boot.version}</version>
 		</dependency>
+		<dependency>
+	      <groupId>org.springframework.boot</groupId>
+	      <artifactId>spring-boot-starter-security</artifactId>
+	      <version>1.2.3.RELEASE</version>
+	    </dependency>
+	    <dependency>
+	      <groupId>org.springframework.mobile</groupId>
+	      <artifactId>spring-mobile-device</artifactId>
+	      <version>1.1.3.RELEASE</version>
+	    </dependency>
+	    <dependency>
+	      <groupId>io.jsonwebtoken</groupId>
+	      <artifactId>jjwt</artifactId>
+	      <version>${jjwt.version}</version>
+	    </dependency>
+	    <dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.5.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>4.3.5.RELEASE</version>
+		</dependency>
 		<!-- <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-redis</artifactId>
@@ -78,7 +104,8 @@
             <artifactId>spring-boot-starter-security</artifactId>
             <version>${spring.boot.version}</version>
         </dependency> -->
-		<!-- Spring boot auto start  -->
+		
+		
 		<dependency>
 	        <groupId>org.springframework.boot</groupId>
 	        <artifactId>spring-boot-devtools</artifactId>

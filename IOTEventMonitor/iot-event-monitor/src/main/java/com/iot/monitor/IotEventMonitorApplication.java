@@ -16,7 +16,7 @@ import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.io.support.ResourcePropertySource;
 
 @SpringBootApplication
-@ComponentScan(basePackages = "com.semisol.data,com.iot.event.subscriber,com.semisol.rest,com.semisol.service")
+@ComponentScan(basePackages = "com.semisol.data,com.iot.event.subscriber,com.semisol.rest,com.semisol.service,,com.semisol.monitor")
 public class IotEventMonitorApplication extends SpringBootServletInitializer implements
 		EmbeddedServletContainerCustomizer, ApplicationListener<ApplicationEnvironmentPreparedEvent>, Ordered {
 

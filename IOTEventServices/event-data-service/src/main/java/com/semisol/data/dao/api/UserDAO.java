@@ -10,6 +10,8 @@ public interface UserDAO {
 	boolean saveUserInfo(User user);
 
 	boolean validateUser(User user);
+	
+	User validateUser(String userName);
 
 	boolean checkUserExists(User user);
 

@@ -4,17 +4,16 @@ import java.util.List;
 
 public class RestResponse {
 	
-	private String sessionId;
+	private String token;
 	
 	private boolean status;
 	
 	private List<Errors> error;
+	public RestResponse(){}
 
-	/**
-	 * @return the sessionId
-	 */
-	public String getSessionId() {
-		return sessionId;
+	public RestResponse(String token,boolean status){
+		this.token = token;
+		this.status= status;
 	}
 
 	/**
@@ -31,11 +30,20 @@ public class RestResponse {
 		this.error = error;
 	}
 
+	
+
 	/**
-	 * @param sessionId the sessionId to set
+	 * @return the token
 	 */
-	public void setSessionId(String sessionId) {
-		this.sessionId = sessionId;
+	public String getToken() {
+		return token;
+	}
+
+	/**
+	 * @param token the token to set
+	 */
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 	/**

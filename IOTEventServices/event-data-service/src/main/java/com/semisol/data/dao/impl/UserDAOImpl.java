@@ -19,7 +19,7 @@ public class UserDAOImpl implements UserDAO {
 
 	public boolean saveUserInfo(User user) {
 		try {
-			user.setPassword(PasswordUtil.getEncryptedPassword(user.getPassword()));
+			//user.setPassword(PasswordUtil.getEncryptedPassword(user.getPassword()));
 			userRepository.save(user);
 		} catch (Exception ex) {
 			return false;
@@ -40,6 +40,20 @@ public class UserDAOImpl implements UserDAO {
 			return false;
 		}
 		return false;
+	}
+	
+	@Override
+	public User validateUser(String userName) {
+		User userData=null;
+		try {
+			logger.info("UserDAOImpl:validateUser" + userName);
+			 userData = userRepository.verifyUserCredentials(userName);
+			
+		} catch (Exception ex) {
+			logger.info("UserDAOImpl:validateUser,exception" + ex.getMessage());
+			return userData;
+		}
+		return userData;
 	}
 
 	@Override

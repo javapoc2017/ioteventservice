@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.semisol.data.dao.api.UserDAO;
@@ -34,7 +35,9 @@ public class LoginServiceImpl implements LoginService {
 		boolean status = false;
 		User user = ConverterUtll.convertDtoToDao(loginDTO);
 		if (!userDAO.checkUserExists(user)) {
-			status = userDAO.saveUserInfo(ConverterUtll.convertDtoToDao(loginDTO));
+			BCryptPasswordEncoder bCryptPasswordEncoder=new BCryptPasswordEncoder();
+			user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+			status = userDAO.saveUserInfo(user);
 			restResponse.setStatus(status);
 		} else {
 			restResponse.setStatus(status);
