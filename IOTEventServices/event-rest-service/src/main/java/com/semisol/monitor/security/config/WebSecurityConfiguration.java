@@ -88,7 +88,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
   
   @Override
   public void configure(WebSecurity web) throws Exception {
-      web.ignoring().antMatchers("/vi/iot/registerUser");
+      web.ignoring().antMatchers("/v1/iot/registerUser");
   }
 
   private void test(){
